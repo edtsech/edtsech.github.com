@@ -6,7 +6,6 @@ comments: true
 categories: clojure
 ---
 
-
 In this note I would like to describe current situation of dealing with templates in Clojure.
 We have four most known options:
 
