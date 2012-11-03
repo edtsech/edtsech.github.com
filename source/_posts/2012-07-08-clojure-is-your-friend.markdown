@@ -108,6 +108,7 @@ Use dashes for naming things, I know you like underscores, but dashes aren't bad
 * [Ruby's lisp features](http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/179642)
 * [Lisp (vs Ruby) Metaprogramming](http://www.slideshare.net/antoniogarrote/lisp-vs-ruby-metaprogramming-3222908)
 * [Ruby Creator Yukihiro 'matz' about Ruby, Functional Programming and Programming Languages Design](http://www.infoq.com/interviews/yukihiro-matz-language-design/)
+* [Clojure, from a Ruby perspective](http://briancarper.net/blog/536/clojure-from-a-ruby-perspective)
 
 ## Peace!
 
