@@ -3,7 +3,7 @@ layout: post
 title: Haskell operators
 date: 2012-11-07
 comments: true
-categories: fp
+categories: haskell
 ---
 
 Haskell operators are just functions like in Lisp.
