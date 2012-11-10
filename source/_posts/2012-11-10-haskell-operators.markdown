@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Haskell Operators
-date: 2012-11-07
+date: 2012-11-10
 comments: true
 categories: haskell
 ---
