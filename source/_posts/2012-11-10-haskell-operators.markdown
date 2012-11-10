@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Haskell operators
+title: Haskell Operators
 date: 2012-11-07
 comments: true
 categories: haskell
