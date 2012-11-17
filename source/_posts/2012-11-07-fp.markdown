@@ -29,6 +29,10 @@ Only functional programming paradigm is supported.
 
 ???
 
+### Rust - 2010
+
+Rust is supporting pure-functional, concurrent-actor, imperative-procedural, and object-oriented styles.
+
 ### Lambdas in Java - 2013
 
 My point is that more and more languages support functional paradigm.
