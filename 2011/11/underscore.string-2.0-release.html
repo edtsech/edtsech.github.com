@@ -1,0 +1,421 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Underscore.string 2.0 release - (edtsech :notes)</title>
+  <meta name="author" content="Edward Tsech">
+
+  
+  <meta name="description" content="Why 2.0? In this version we moved Underscore.string library to separate namespace _.string
+for solve name conflicts with Underscore library. There &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://edtsech.github.com/2011/11/underscore.string-2.0-release.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="(edtsech :notes)" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17645412-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">(edtsech :notes)</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:edtsech.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Underscore.string 2.0 Release</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-09T00:00:00+06:00" pubdate data-updated="true">Nov 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Why 2.0?</h2>
+
+<p>In this version we moved Underscore.string library to separate namespace <b>_.string</b>
+for solve name conflicts with Underscore library. There are some functions that available in
+both libraries, for ex. <b>include</b> and <b>reverse</b>. In 1.1.6 and lower Underscore.string provided <b>includes</b>
+function, but we decided that two function <b>include</b> and (<b>includes</b> or <b>includeString</b>) in one namespace
+and with same functionality but one function for collections another for strings, it&#8217;s a little bit ugly.</p>
+
+<h2>Do we always need to write _.string?</h2>
+
+<p>Nope. Underscore.string provide <b>exports</b> function <b>_.string.exports()</b>, this function returns only non-conflict functions and we can mix in these functions to Underscore scope if you want.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">mixin</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">string</span><span class="p">.</span><span class="nx">exports</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Access to Underscore.string and Underscore functions</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">include</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="s1">&#39;  asd  &#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Access to conflict Underscore.string functions</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">string</span><span class="p">.</span><span class="nx">include</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c1">// or</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">include</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c1">// &quot;str&quot; it&#39;s just alias for &quot;string&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Problems</h2>
+
+<p>We lose two things for <b>include</b> and <b>reverse</b> methods from <b>_.string:</b></p>
+
+<ul>
+<li>Calls like <code>_('foobar').include('bar')</code> aren&#8217;t available;</li>
+<li>Chaining isn&#8217;t available too.</li>
+</ul>
+
+
+<p>But if you need this functionality you can create aliases for conflict functions which will be convnient for you.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">mixin</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">includeString</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">include</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">reverseString</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">reverse</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Now wrapper calls and chaining are available.</span>
+</span><span class='line'><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">).</span><span class="nx">chain</span><span class="p">().</span><span class="nx">reverseString</span><span class="p">().</span><span class="nx">includeString</span><span class="p">(</span><span class="s1">&#39;rab&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Standalone Usage</h2>
+
+<p>If you are using Underscore.string without Underscore. You also have <em>.string namespace for it. And current version number you can find through <b>VERSION</b> constant <b></em>.string.VERSION.</b> If you want you can just reassign _ variable with <b>_.string</b></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">_</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">string</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">VERSION</span> <span class="c1">// =&gt; 1.2.0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Node.js Installation</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">underscore</span><span class="p">.</span><span class="nx">string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Standalone usage:</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">_s</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;underscore.string&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Integrate with Underscore.js:</h3>
+
+<p>I recommend you this way for integrating with Underscore.js:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">_</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;underscore&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Import Underscore.string to separate object, because there are conflict functions (include, reverse, contains)</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">str</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;underscore.string&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Mix in non-conflict functions to Underscore namespace if you want</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">mixin</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">exports</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// All functions, include conflict, will be available through _.str object</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">include</span><span class="p">(</span><span class="s1">&#39;Underscore.string&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">);</span> <span class="c1">// =&gt; true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Upgrade</h2>
+
+<p>In new version function <b>includes</b> has been removed, you should replace this function by <b><em>.str.include</b> or create alias <b></em>.includes = _.str.include</b> and all will work fine.</p>
+
+<h2>Peace!</h2>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Edward Tsech</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-09T00:00:00+06:00" pubdate data-updated="true">Nov 9<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/js/'>js</a>, <a class='category' href='/blog/categories/underscore/'>underscore</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://edtsech.github.com/2011/11/underscore.string-2.0-release.html" data-via="edtsech" data-counturl="http://edtsech.github.com/2011/11/underscore.string-2.0-release.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/10/paper-trail-2.2.7-2.4.0-changes.html" title="Previous Post: PaperTrail 2.2.7-2.4.0 changes">&laquo; PaperTrail 2.2.7-2.4.0 changes</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/11/paper-trail-ignore-vs-skip.html" title="Next Post: PaperTrail Ignore vs Skip">PaperTrail Ignore vs Skip &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/12/and-let.html">and-let macro</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/do-unless.html">Do unless</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/haskell-operators.html">Haskell Operators</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/carrying-in-haskell.html">Carrying in Haskell</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/fp.html">Functional Injection</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/edtsech">@edtsech</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'edtsech',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("edtsech", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/edtsech" class="twitter-follow-button" data-show-count="false">Follow @edtsech</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Edward Tsech -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'edtsechnotes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://edtsech.github.com/2011/11/underscore.string-2.0-release.html';
+        var disqus_url = 'http://edtsech.github.com/2011/11/underscore.string-2.0-release.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

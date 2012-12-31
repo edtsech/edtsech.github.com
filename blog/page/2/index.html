@@ -1,0 +1,719 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>(edtsech :notes)</title>
+  <meta name="author" content="Edward Tsech">
+
+  
+  <meta name="description" content="What is it? CoffeeScript is a little language that compiles into JavaScript.
+The golden rule of CoffeeScript is: &#8220;It&#8217;s just JavaScript&# &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://edtsech.github.com/blog/page/2/index.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="(edtsech :notes)" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17645412-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">(edtsech :notes)</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:edtsech.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/coffeescript.html">CoffeeScript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-22T00:00:00+06:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>What is it?</h2>
+
+<ul>
+<li>CoffeeScript is a little language that compiles into JavaScript.</li>
+<li>The golden rule of CoffeeScript is: &#8220;It&#8217;s just JavaScript&#8221;.</li>
+</ul>
+
+
+<p>More info in <a href="http://jashkenas.github.com/coffee-script/">README</a></p>
+
+<p>When I saw CoffeeScript first time it looks weird: &#8216;:&#8217; instead of &#8216;=&#8217; and other strange things.
+And I wasn&#8217;t good about that. But things change and opinions of people too.
+Now I have very positive opinion about CS not only because CS makes code less noisy, more structured, more readable and less buggy,
+mostly because ECMAScript and CoffeeScript evolve together.
+And it makes CoffeeScript not &#8220;Yet another <a href='https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS'>language that compiles to JavaScript</a>&#8221;.
+CS has big influence on future and present of ECMAScript, I think.
+Below I have some examples(it&#8217;s not actually examples, just some links to CS website) of features that will be provided in ES6(in future version of ECMAScript specification)
+and these features already implemented in CS, some of them was borrowed from CS.
+I think, it&#8217;s awesome because we can just use nice features NOW.
+Also CoffeeScript provides big portion of syntax sugar(short functions, optional return, ranges, additional operators, string interpolation and etc) and
+fixes some bad parts of JavaScript:</p>
+
+<h2>Fixes</h2>
+
+<ul>
+<li>Problems with global scope (each file wraps to anonymous function)</li>
+<li>Problems with weak typization (CS internally always uses === operator)</li>
+<li>Awkward semicolons (CS has indentation syntax)</li>
+</ul>
+
+
+<h2>Features</h2>
+
+<p>Some features that will be in ES6/ES.next/ES Harmony and that already exist in CoffeeScript:</p>
+
+<ul>
+<li><a href="http://jashkenas.github.com/coffee-script/#splats">Splats</a></li>
+<li><a href="http://jashkenas.github.com/coffee-script/#destructuring">Destructuring</a></li>
+<li><a href="http://jashkenas.github.com/coffee-script/#literals">Arrow functions</a></li>
+<li><a href="http://jashkenas.github.com/coffee-script/#fat_arrow" title="">Function binding (fat arrow)</a></li>
+</ul>
+
+
+<h2>Links</h2>
+
+<ul>
+<li><a href="http://jashkenas.github.com/coffee-script/">CoffeeScript Home Page</a></li>
+<li><a href="http://blip.tv/jsconf/jsconf2011-jeremy-ashkenas-5258082">JSConf 2011, about CS and future of JS</a></li>
+<li>Dmitry Soshnikov about future of ECMAScript: <a href='http://blip.tv/falsyvalues/falsy-values-2010-dmitry-soshnikov-5600275'>video</a> and <a href='http://www.slideshare.net/dmitrysoshnikov/falsyvalues-dmitry-soshnikov-ecmascript-6'>slides</a></li>
+</ul>
+
+
+<h2>Peace!</h2>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/paper-trail-ignore-vs-skip.html">PaperTrail Ignore vs Skip</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-17T00:00:00+06:00" pubdate data-updated="true">Nov 17<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>:skip attribute/key was released in PaperTrail 2.4.1 What are the differences between :ignore and :skip?
+For example we have <b>Article</b> model with ignored <b>title</b> field and skipped <code>file_upload</code> field:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">has_paper_trail</span> <span class="ss">:ignore</span> <span class="o">=&gt;</span> <span class="ss">:title</span><span class="p">,</span>
+</span><span class='line'>                  <span class="ss">:skip</span>   <span class="o">=&gt;</span> <span class="ss">:file_upload</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create empty article object, initial version&#8217;ll be created:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="no">Article</span><span class="o">.</span><span class="n">create</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="no">Article</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="no">Article</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="n">integer</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">file_upload</span><span class="p">:</span> <span class="n">string</span><span class="p">)</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">versions</span><span class="o">.</span><span class="n">count</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If we update ignored <b>title</b> attribute, version won&#8217;t be created.
+If we update non-ignored <b>content</b> column, version&#8217;ll be created
+and we&#8217;ll have stored changes of object in <b>object_changes</b> column that available through <b>changeset</b> attribute.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">update_attributes</span> <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s1">&#39;Title&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">versions</span><span class="o">.</span><span class="n">count</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">1</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">update_attributes</span> <span class="ss">:title</span> <span class="o">=&gt;</span> <span class="s1">&#39;New Title&#39;</span><span class="p">,</span> <span class="ss">:content</span> <span class="o">=&gt;</span> <span class="s1">&#39;Content&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">versions</span><span class="o">.</span><span class="n">count</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="mi">2</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">versions</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">changeset</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="p">{</span><span class="s2">&quot;content&quot;</span><span class="o">=&gt;[</span><span class="kp">nil</span><span class="p">,</span> <span class="s2">&quot;Content&quot;</span><span class="o">]</span><span class="p">}</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">a</span><span class="o">.</span><span class="n">versions</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">reify</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="c1">#&lt;Article id: 1, title: &quot;Title&quot;, content: nil, abstract: nil, file_upload: nil&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As we see ignored <b>title</b> column not stored in changeset but it stored in dumped object.
+But there are some cases when we don&#8217;t need to store some columns in dump object by various reasons.
+For these cases :skip key has been created. :skip and :ignore work identically, but :skip doesn&#8217;t store
+data of <b>skiped</b> columns in object dump. That&#8217;s it.</p>
+
+<p>Information about attributes tracking you can find in paper_trail PaperTrail
+<a href="https://github.com/airblade/paper_trail">README</a>
+(Choosing Attributes To Monitor) on GitHub.</p>
+
+<p><a href="https://github.com/airblade/paper_trail/issues/92">Issue</a> about :skip on GitHub.</p>
+
+<h2>Peace!</h2>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/11/underscore.string-2.0-release.html">Underscore.string 2.0 Release</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-09T00:00:00+06:00" pubdate data-updated="true">Nov 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Why 2.0?</h2>
+
+<p>In this version we moved Underscore.string library to separate namespace <b>_.string</b>
+for solve name conflicts with Underscore library. There are some functions that available in
+both libraries, for ex. <b>include</b> and <b>reverse</b>. In 1.1.6 and lower Underscore.string provided <b>includes</b>
+function, but we decided that two function <b>include</b> and (<b>includes</b> or <b>includeString</b>) in one namespace
+and with same functionality but one function for collections another for strings, it&#8217;s a little bit ugly.</p>
+
+<h2>Do we always need to write _.string?</h2>
+
+<p>Nope. Underscore.string provide <b>exports</b> function <b>_.string.exports()</b>, this function returns only non-conflict functions and we can mix in these functions to Underscore scope if you want.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">mixin</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">string</span><span class="p">.</span><span class="nx">exports</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Access to Underscore.string and Underscore functions</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">include</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">trim</span><span class="p">(</span><span class="s1">&#39;  asd  &#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Access to conflict Underscore.string functions</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">string</span><span class="p">.</span><span class="nx">include</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c1">// or</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">include</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c1">// &quot;str&quot; it&#39;s just alias for &quot;string&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Problems</h2>
+
+<p>We lose two things for <b>include</b> and <b>reverse</b> methods from <b>_.string:</b></p>
+
+<ul>
+<li>Calls like <code>_('foobar').include('bar')</code> aren&#8217;t available;</li>
+<li>Chaining isn&#8217;t available too.</li>
+</ul>
+
+
+<p>But if you need this functionality you can create aliases for conflict functions which will be convnient for you.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">mixin</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">includeString</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">include</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">reverseString</span><span class="o">:</span> <span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">reverse</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Now wrapper calls and chaining are available.</span>
+</span><span class='line'><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;foobar&#39;</span><span class="p">).</span><span class="nx">chain</span><span class="p">().</span><span class="nx">reverseString</span><span class="p">().</span><span class="nx">includeString</span><span class="p">(</span><span class="s1">&#39;rab&#39;</span><span class="p">).</span><span class="nx">value</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Standalone Usage</h2>
+
+<p>If you are using Underscore.string without Underscore. You also have <em>.string namespace for it. And current version number you can find through <b>VERSION</b> constant <b></em>.string.VERSION.</b> If you want you can just reassign _ variable with <b>_.string</b></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">_</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">string</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">VERSION</span> <span class="c1">// =&gt; 1.2.0</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Node.js Installation</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">underscore</span><span class="p">.</span><span class="nx">string</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Standalone usage:</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">_s</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;underscore.string&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Integrate with Underscore.js:</h3>
+
+<p>I recommend you this way for integrating with Underscore.js:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">_</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;underscore&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Import Underscore.string to separate object, because there are conflict functions (include, reverse, contains)</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">str</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;underscore.string&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Mix in non-conflict functions to Underscore namespace if you want</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">mixin</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">exports</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// All functions, include conflict, will be available through _.str object</span>
+</span><span class='line'><span class="nx">_</span><span class="p">.</span><span class="nx">str</span><span class="p">.</span><span class="nx">include</span><span class="p">(</span><span class="s1">&#39;Underscore.string&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">);</span> <span class="c1">// =&gt; true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Upgrade</h2>
+
+<p>In new version function <b>includes</b> has been removed, you should replace this function by <b><em>.str.include</b> or create alias <b></em>.includes = _.str.include</b> and all will work fine.</p>
+
+<h2>Peace!</h2>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/10/paper-trail-2.2.7-2.4.0-changes.html">PaperTrail 2.2.7-2.4.0 Changes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-20T00:00:00+06:00" pubdate data-updated="true">Oct 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>1. Changeset</h2>
+
+<p>From PaperTrail 2.2.7 release you can find a new method of <b>Version</b> instances, called <b>changeset.</b>
+PaperTrail doesn&#8217;t have <b>diffs</b> mechanism inside, but now if you have <b>object_changes</b> column in <b>versions</b>
+table (it can be generated automatically if you install PaperTrail with <b>&#8211;with-changes</b> option) it will store Rails&#8217; <b>changes</b> of dirty objects.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rails g paper_trail:install --with-changes
+</span><span class='line'><span class="c"># or manually add `object_changes` column in your `versions` table</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;&gt;</span> <span class="n">widget</span> <span class="o">=</span> <span class="no">Widget</span><span class="o">.</span><span class="n">create</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">&#39;Bob&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">widget</span><span class="o">.</span><span class="n">versions</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">changeset</span>                <span class="c1"># {}</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">widget</span><span class="o">.</span><span class="n">update_attributes</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">&#39;Robert&#39;</span>
+</span><span class='line'><span class="o">&gt;&gt;</span> <span class="n">widget</span><span class="o">.</span><span class="n">versions</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">changeset</span>                <span class="c1"># {&#39;name&#39; =&gt; [&#39;Bob&#39;, &#39;Robert&#39;]}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>More information about Diffing Versions you can find in PaperTrail <a href="https://github.com/airblade/paper_trail#diffing-versions">README</a> on GitHub.</p>
+
+<h2>2. Flexibility in naming of methods</h2>
+
+<p>There are some situations when methods <b>version</b> and <b>versions</b> are already busy by other associations or smth.
+In this case we can change the names of these methods in our application (but sometimes it&#8217;s time-consuming)
+or we can configure these methods in PaperTrail like that:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">has_paper_trail</span> <span class="ss">:versions</span> <span class="o">=&gt;</span> <span class="ss">:paper_trail_versions</span><span class="p">,</span>
+</span><span class='line'>                <span class="ss">:version_name</span> <span class="o">=&gt;</span> <span class="ss">:paper_trail_version</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. Add :on option</h2>
+
+<p>With this option we can configure what events we need to track. For example, we don&#8217;t need to track <b>create</b> events:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">has_paper_trail</span> <span class="ss">:on</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. Without Versioning</h2>
+
+<p>In some cases some action/actions must be executed without versioning. Now PaperTrail has simple wrapper for this case:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Executes the given method or block without creating a new version.</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">without_versioning</span><span class="p">(</span><span class="nb">method</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">paper_trail_was_enabled</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">paper_trail_enabled_for_model</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">paper_trail_off</span>
+</span><span class='line'>  <span class="nb">method</span> <span class="p">?</span> <span class="nb">method</span><span class="o">.</span><span class="n">to_proc</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="p">:</span> <span class="k">yield</span>
+</span><span class='line'><span class="k">ensure</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">paper_trail_on</span> <span class="k">if</span> <span class="n">paper_trail_was_enabled</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Usage:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># With method name</span>
+</span><span class='line'><span class="vi">@widget</span><span class="o">.</span><span class="n">without_versioning</span> <span class="ss">:destroy</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># or with block</span>
+</span><span class='line'><span class="vi">@widget</span><span class="o">.</span><span class="n">without_versioning</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@widget</span><span class="o">.</span><span class="n">update_attributes</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s1">&#39;Ford&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>5. Attr Accessible</h2>
+
+<p>Now we need to use <b>attr_accessible</b> if we want to store some <b>meta</b> info in <b>versions</b> table. Example of <b>meta</b> information from PaperTrail README:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Article</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+</span><span class='line'>  <span class="n">belongs_to</span> <span class="ss">:author</span>
+</span><span class='line'>  <span class="n">has_paper_trail</span> <span class="ss">:meta</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:author_id</span>  <span class="o">=&gt;</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">article</span><span class="o">|</span> <span class="n">article</span><span class="o">.</span><span class="n">author_id</span> <span class="p">},</span>
+</span><span class='line'>                             <span class="ss">:word_count</span> <span class="o">=&gt;</span> <span class="ss">:count_words</span><span class="p">,</span>
+</span><span class='line'>                             <span class="ss">:answer</span>     <span class="o">=&gt;</span> <span class="mi">42</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">count_words</span>
+</span><span class='line'>    <span class="mi">153</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this case <b>author_id</b>, <b>word_count</b> and <b>answer</b> are <b>meta</b>, and we need to have these columns in <b>versions</b> table. And also we need to add these <b>attrs</b> to <b>attr_accessible</b></p>
+
+<h2>Peace!</h2>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/12/and-let.html">and-let macro</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/do-unless.html">Do unless</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/haskell-operators.html">Haskell Operators</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/carrying-in-haskell.html">Carrying in Haskell</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/fp.html">Functional Injection</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/edtsech">@edtsech</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'edtsech',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("edtsech", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/edtsech" class="twitter-follow-button" data-show-count="false">Follow @edtsech</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Edward Tsech -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'edtsechnotes';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

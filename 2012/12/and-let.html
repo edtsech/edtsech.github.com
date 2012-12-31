@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>and-let macro - (edtsech :notes)</title>
+  <meta name="author" content="Edward Tsech">
+
+  
+  <meta name="description" content="In Clojure we have two nice macros if-let
+and when-let. 1
+2
+3
+4
+5
+6
+7
+8
+(if-let [a ...] (inc a) 0) ; or we can use `when-let` when we don&#39;t have &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://edtsech.github.com/2012/12/and-let.html">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="(edtsech :notes)" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-17645412-3']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">(edtsech :notes)</a></h1>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:edtsech.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">And-let Macro</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-30T00:00:00+06:00" pubdate data-updated="true">Dec 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In Clojure we have two nice macros <a href="http://clojuredocs.org/clojure_core/clojure.core/if-let">if-let</a>
+and <a href="http://clojuredocs.org/clojure_core/clojure.core/when-let">when-let</a>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='clj'><span class='line'><span class="p">(</span><span class="nb">if-let </span><span class="p">[</span><span class="nv">a</span> <span class="nv">...</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">inc </span><span class="nv">a</span><span class="p">)</span>
+</span><span class='line'>  <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">; or we can use `when-let` when we don&#39;t have `else` branch</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nb">when-let </span><span class="p">[</span><span class="nv">a</span> <span class="nv">...</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">inc </span><span class="nv">a</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>but unfortunately we can&#8217;t pass more than two binding forms to
+these functions, and emulate the behavior of Scheme&#8217;s <a href="http://www.gnu.org/software/mit-scheme/documentation/mit-scheme-ref/and_002dlet_002a-_0028SRFI-2_0029.html">and-let</a>
+or kind of maybe monad.</p>
+
+<p>I mean smth like that:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='clj'><span class='line'><span class="p">(</span><span class="nf">and-let</span> <span class="p">[</span><span class="nv">a</span> <span class="mi">1</span> <span class="nv">b</span> <span class="mi">2</span><span class="p">]</span>
+</span><span class='line'>         <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span> <span class="c1">; =&gt; 3</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nf">and-let</span> <span class="p">[</span><span class="nv">a</span> <span class="mi">1</span> <span class="nv">b</span> <span class="nv">nil</span><span class="p">]</span>
+</span><span class='line'>         <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span><span class="p">))</span> <span class="c1">; =&gt; nil</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It isn&#8217;t really hard to implement it:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='clj'><span class='line'><span class="p">(</span><span class="kd">defmacro </span><span class="nv">and-let</span> <span class="p">[</span><span class="nv">bindings</span> <span class="nv">expr</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">seq </span><span class="nv">bindings</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">`</span><span class="p">(</span><span class="nb">if-let </span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="nb">first </span><span class="nv">bindings</span><span class="p">)</span> <span class="o">~</span><span class="p">(</span><span class="nb">second </span><span class="nv">bindings</span><span class="p">)]</span>
+</span><span class='line'>       <span class="p">(</span><span class="nf">and-let</span> <span class="o">~</span><span class="p">(</span><span class="nb">drop </span><span class="mi">2</span> <span class="nv">bindings</span><span class="p">)</span> <span class="o">~</span><span class="nv">expr</span><span class="p">))</span>
+</span><span class='line'>     <span class="nv">expr</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nf">use</span> <span class="ss">&#39;clojure.walk</span><span class="p">)</span>
+</span><span class='line'><span class="p">(</span><span class="nf">macroexpand-all</span> <span class="o">&#39;</span><span class="p">(</span><span class="nf">and-let</span> <span class="p">[</span><span class="nv">a</span> <span class="mi">1</span> <span class="nv">b</span> <span class="mi">2</span><span class="p">]</span>
+</span><span class='line'>                           <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)))</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">; (let* [temp__3971__auto__ 1] </span>
+</span><span class='line'><span class="c1">;   (if temp__3971__auto__ </span>
+</span><span class='line'><span class="c1">;     (let* [a temp__3971__auto__] </span>
+</span><span class='line'><span class="c1">;       (let* [temp__3971__auto__ 2] </span>
+</span><span class='line'><span class="c1">;         (if temp__3971__auto__ </span>
+</span><span class='line'><span class="c1">;           (let* [b temp__3971__auto__]  </span>
+</span><span class='line'><span class="c1">;             (+ a b)) </span>
+</span><span class='line'><span class="c1">;           nil))) </span>
+</span><span class='line'><span class="c1">;     nil))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But we could do some improvements here: check count of binding form (should be even),
+implement <code>else</code> clause, probably find a better name, implementation.</p>
+
+<p>I&#8217;m not really sure about <code>else</code> clause, it can be very useful, but it sounds weird to have <code>else</code> part
+with <code>and-let</code> name. I thought about <code>if-let*</code> and <code>when-let*</code> names, it looks idiomatic for other Lisps
+but not for Clojure I think.</p>
+
+<p>I think Clojure way, will be - change a behavior of <code>if-let</code> and <code>when-let</code> macros in Clojure to support
+more than two binding forms, because <code>let</code> already does it.</p>
+
+<p>Wdyt?</p>
+
+<p>PS. Another option is use the maybe monad from <code>algo.monads</code> but it&#8217;s extra dependency for relatively
+small amount of code (if you don&#8217;t plan use monads really often) and slightly different behavior.</p>
+
+<h2>Peace!</h2>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Edward Tsech</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-30T00:00:00+06:00" pubdate data-updated="true">Dec 30<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/clojure/'>clojure</a>, <a class='category' href='/blog/categories/macros/'>macros</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://edtsech.github.com/2012/12/and-let.html" data-via="edtsech" data-counturl="http://edtsech.github.com/2012/12/and-let.html" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/11/do-unless.html" title="Previous Post: Do unless">&laquo; Do unless</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2012/12/and-let.html">and-let macro</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/do-unless.html">Do unless</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/haskell-operators.html">Haskell Operators</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/carrying-in-haskell.html">Carrying in Haskell</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2012/11/fp.html">Functional Injection</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/edtsech">@edtsech</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'edtsech',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("edtsech", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/edtsech" class="twitter-follow-button" data-show-count="false">Follow @edtsech</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Edward Tsech -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'edtsechnotes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://edtsech.github.com/2012/12/and-let.html';
+        var disqus_url = 'http://edtsech.github.com/2012/12/and-let.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

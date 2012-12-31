@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: js | (edtsech :notes)]]></title>
+  <link href="http://edtsech.github.com/blog/categories/js/atom.xml" rel="self"/>
+  <link href="http://edtsech.github.com/"/>
+  <updated>2012-12-31T13:55:27+06:00</updated>
+  <id>http://edtsech.github.com/</id>
+  <author>
+    <name><![CDATA[Edward Tsech]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Underscore.string 2.0 release]]></title>
+    <link href="http://edtsech.github.com/2011/11/underscore.string-2.0-release.html"/>
+    <updated>2011-11-09T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2011/11/underscore.string-2.0-release</id>
+    <content type="html"><![CDATA[<h2>Why 2.0?</h2>
+
+<p>In this version we moved Underscore.string library to separate namespace <b>_.string</b>
+for solve name conflicts with Underscore library. There are some functions that available in
+both libraries, for ex. <b>include</b> and <b>reverse</b>. In 1.1.6 and lower Underscore.string provided <b>includes</b>
+function, but we decided that two function <b>include</b> and (<b>includes</b> or <b>includeString</b>) in one namespace
+and with same functionality but one function for collections another for strings, it's a little bit ugly.</p>
+
+<h2>Do we always need to write _.string?</h2>
+
+<p>Nope. Underscore.string provide <b>exports</b> function <b>_.string.exports()</b>, this function returns only non-conflict functions and we can mix in these functions to Underscore scope if you want.</p>
+
+<p>``` js
+<em>.mixin(</em>.string.exports());</p>
+
+<p>// Access to Underscore.string and Underscore functions
+<em>.include([1,2,3], 1)
+</em>.trim('  asd  ')</p>
+
+<p>// Access to conflict Underscore.string functions
+<em>.string.include('foobar', 'bar')
+// or
+</em>.str.include('foobar', 'bar')
+// "str" it's just alias for "string"
+```</p>
+
+<h2>Problems</h2>
+
+<p>We lose two things for <b>include</b> and <b>reverse</b> methods from <b>_.string:</b></p>
+
+<ul>
+<li>Calls like <code>_('foobar').include('bar')</code> aren't available;</li>
+<li>Chaining isn't available too.</li>
+</ul>
+
+
+<p>But if you need this functionality you can create aliases for conflict functions which will be convnient for you.</p>
+
+<p>``` js
+_.mixin({</p>
+
+<pre><code>includeString: _.str.include,
+reverseString: _.str.reverse
+</code></pre>
+
+<p>})</p>
+
+<p>// Now wrapper calls and chaining are available.
+_('foobar').chain().reverseString().includeString('rab').value()
+```</p>
+
+<h2>Standalone Usage</h2>
+
+<p>If you are using Underscore.string without Underscore. You also have <em>.string namespace for it. And current version number you can find through <b>VERSION</b> constant <b></em>.string.VERSION.</b> If you want you can just reassign _ variable with <b>_.string</b></p>
+
+<p>``` js
+_ = _.string</p>
+
+<p>_.VERSION // => 1.2.0
+```</p>
+
+<h2>Node.js Installation</h2>
+
+<p><code>js
+npm install underscore.string
+</code></p>
+
+<h3>Standalone usage:</h3>
+
+<p><code>js
+var _s = require('underscore.string');
+</code></p>
+
+<h3>Integrate with Underscore.js:</h3>
+
+<p>I recommend you this way for integrating with Underscore.js:</p>
+
+<p>``` js
+var _  = require('underscore');</p>
+
+<p>// Import Underscore.string to separate object, because there are conflict functions (include, reverse, contains)
+_.str = require('underscore.string');</p>
+
+<p>// Mix in non-conflict functions to Underscore namespace if you want
+<em>.mixin(</em>.str.exports());</p>
+
+<p>// All functions, include conflict, will be available through <em>.str object
+</em>.str.include('Underscore.string', 'string'); // => true
+```</p>
+
+<h2>Upgrade</h2>
+
+<p>In new version function <b>includes</b> has been removed, you should replace this function by <b><em>.str.include</b> or create alias <b></em>.includes = _.str.include</b> and all will work fine.</p>
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+</feed>

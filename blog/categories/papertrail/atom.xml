@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: papertrail | (edtsech :notes)]]></title>
+  <link href="http://edtsech.github.com/blog/categories/papertrail/atom.xml" rel="self"/>
+  <link href="http://edtsech.github.com/"/>
+  <updated>2012-12-31T13:55:27+06:00</updated>
+  <id>http://edtsech.github.com/</id>
+  <author>
+    <name><![CDATA[Edward Tsech]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[PaperTrail Ignore vs Skip]]></title>
+    <link href="http://edtsech.github.com/2011/11/paper-trail-ignore-vs-skip.html"/>
+    <updated>2011-11-17T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2011/11/paper-trail-ignore-vs-skip</id>
+    <content type="html"><![CDATA[<p>:skip attribute/key was released in PaperTrail 2.4.1 What are the differences between :ignore and :skip?
+For example we have <b>Article</b> model with ignored <b>title</b> field and skipped <code>file_upload</code> field:</p>
+
+<p>``` ruby
+class Article &lt; ActiveRecord::Base
+  has_paper_trail :ignore => :title,</p>
+
+<pre><code>              :skip   =&gt; :file_upload
+</code></pre>
+
+<p>end
+```</p>
+
+<p>Create empty article object, initial version'll be created:</p>
+
+<p>``` ruby</p>
+
+<blockquote><blockquote><p>a = Article.create
+Article
+=> Article(id: integer, title: string, content: string, file_upload: string)
+a.versions.count
+=> 1
+```</p></blockquote></blockquote>
+
+<p>If we update ignored <b>title</b> attribute, version won't be created.
+If we update non-ignored <b>content</b> column, version'll be created
+and we'll have stored changes of object in <b>object_changes</b> column that available through <b>changeset</b> attribute.</p>
+
+<p>``` ruby</p>
+
+<blockquote><blockquote><p>a.update_attributes :title => 'Title'
+a.versions.count
+=> 1
+a.update_attributes :title => 'New Title', :content => 'Content'
+a.versions.count
+=> 2
+a.versions.last.changeset
+=> {"content"=>[nil, "Content"]}
+a.versions.last.reify
+=> #<Article id: 1, title: "Title", content: nil, abstract: nil, file_upload: nil>
+```</p></blockquote></blockquote>
+
+<p>As we see ignored <b>title</b> column not stored in changeset but it stored in dumped object.
+But there are some cases when we don't need to store some columns in dump object by various reasons.
+For these cases :skip key has been created. :skip and :ignore work identically, but :skip doesn't store
+data of <b>skiped</b> columns in object dump. That's it.</p>
+
+<p>Information about attributes tracking you can find in paper_trail PaperTrail
+<a href="https://github.com/airblade/paper_trail">README</a>
+(Choosing Attributes To Monitor) on GitHub.</p>
+
+<p><a href="https://github.com/airblade/paper_trail/issues/92">Issue</a> about :skip on GitHub.</p>
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PaperTrail 2.2.7-2.4.0 changes]]></title>
+    <link href="http://edtsech.github.com/2011/10/paper-trail-2.2.7-2.4.0-changes.html"/>
+    <updated>2011-10-20T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2011/10/paper-trail-2.2.7-2.4.0-changes</id>
+    <content type="html"><![CDATA[<h2>1. Changeset</h2>
+
+<p>From PaperTrail 2.2.7 release you can find a new method of <b>Version</b> instances, called <b>changeset.</b>
+PaperTrail doesn't have <b>diffs</b> mechanism inside, but now if you have <b>object_changes</b> column in <b>versions</b>
+table (it can be generated automatically if you install PaperTrail with <b>--with-changes</b> option) it will store Rails' <b>changes</b> of dirty objects.</p>
+
+<p>``` sh
+$ rails g paper_trail:install --with-changes</p>
+
+<h1>or manually add <code>object_changes</code> column in your <code>versions</code> table</h1>
+
+<p>```</p>
+
+<p>``` ruby</p>
+
+<blockquote><blockquote><p>widget = Widget.create :name => 'Bob'
+widget.versions.last.changeset                # {}
+widget.update_attributes :name => 'Robert'
+widget.versions.last.changeset                # {'name' => ['Bob', 'Robert']}
+```</p></blockquote></blockquote>
+
+<p>More information about Diffing Versions you can find in PaperTrail <a href="https://github.com/airblade/paper_trail#diffing-versions">README</a> on GitHub.</p>
+
+<h2>2. Flexibility in naming of methods</h2>
+
+<p>There are some situations when methods <b>version</b> and <b>versions</b> are already busy by other associations or smth.
+In this case we can change the names of these methods in our application (but sometimes it's time-consuming)
+or we can configure these methods in PaperTrail like that:</p>
+
+<p>``` ruby
+has_paper_trail :versions => :paper_trail_versions,</p>
+
+<pre><code>            :version_name =&gt; :paper_trail_version
+</code></pre>
+
+<p>```</p>
+
+<h2>3. Add :on option</h2>
+
+<p>With this option we can configure what events we need to track. For example, we don't need to track <b>create</b> events:</p>
+
+<p><code>ruby
+has_paper_trail :on =&gt; [:update, :destroy]
+</code></p>
+
+<h2>4. Without Versioning</h2>
+
+<p>In some cases some action/actions must be executed without versioning. Now PaperTrail has simple wrapper for this case:</p>
+
+<p>``` ruby</p>
+
+<h1>Executes the given method or block without creating a new version.</h1>
+
+<p>def without_versioning(method = nil)
+  paper_trail_was_enabled = self.paper_trail_enabled_for_model
+  self.class.paper_trail_off
+  method ? method.to_proc.call(self) : yield
+ensure
+  self.class.paper_trail_on if paper_trail_was_enabled
+end
+```</p>
+
+<p>Usage:</p>
+
+<p>``` ruby</p>
+
+<h1>With method name</h1>
+
+<p>@widget.without_versioning :destroy</p>
+
+<h1>or with block</h1>
+
+<p>@widget.without_versioning do
+  @widget.update_attributes :name => 'Ford'
+end
+```</p>
+
+<h2>5. Attr Accessible</h2>
+
+<p>Now we need to use <b>attr_accessible</b> if we want to store some <b>meta</b> info in <b>versions</b> table. Example of <b>meta</b> information from PaperTrail README:</p>
+
+<p>``` ruby
+class Article &lt; ActiveRecord::Base
+  belongs_to :author
+  has_paper_trail :meta => { :author_id  => Proc.new { |article| article.author_id },</p>
+
+<pre><code>                         :word_count =&gt; :count_words,
+                         :answer     =&gt; 42 }
+</code></pre>
+
+<p>  def count_words</p>
+
+<pre><code>153
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>In this case <b>author_id</b>, <b>word_count</b> and <b>answer</b> are <b>meta</b>, and we need to have these columns in <b>versions</b> table. And also we need to add these <b>attrs</b> to <b>attr_accessible</b></p>
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+</feed>

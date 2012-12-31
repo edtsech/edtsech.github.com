@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: clj-webdriver | (edtsech :notes)]]></title>
+  <link href="http://edtsech.github.com/blog/categories/clj-webdriver/atom.xml" rel="self"/>
+  <link href="http://edtsech.github.com/"/>
+  <updated>2012-12-31T13:55:27+06:00</updated>
+  <id>http://edtsech.github.com/</id>
+  <author>
+    <name><![CDATA[Edward Tsech]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Do unless]]></title>
+    <link href="http://edtsech.github.com/2012/11/do-unless.html"/>
+    <updated>2012-11-20T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2012/11/do-unless</id>
+    <content type="html"><![CDATA[<p>Whilst experimenting with <a href="https://github.com/semperos/clj-webdriver">clj-webdriver</a>
+and writing <a href="https://github.com/edtsech/social-phobia">social-phobia</a>
+I have created an interesting macro and would like to share it with you and get some feedback.</p>
+
+<p>Lets write some simple script, log in to GitHub</p>
+
+<p><code>clj
+(set-driver! {:browser :firefox})
+(to "https://github.com/login")
+(input-text "#login_field" (auth :login))
+(input-text "#password" (auth :pass))
+(click {:xpath "//input[@type='submit']"})
+...
+</code></p>
+
+<p>If we have wrong URL or don't have an element on the page, we basically get that:</p>
+
+<p><code>clj
+NullPointerException   clojure.lang.Reflector.invokeInstanceMethod (Reflector.java:26)
+</code></p>
+
+<p>In a different way we can get the same result like this:</p>
+
+<p>``` clj
+=> (def el (find-element {:css "#login_fiel"}))</p>
+
+<h1>'user/el</h1>
+
+<p>=> el</p>
+
+<h1>clj_webdriver.element.Element{:webelement nil}</h1>
+
+<p>=> (input-text el "asd")
+NullPointerException   clojure.lang.Reflector.invokeInstanceMethod (Reflector.java:26)
+```</p>
+
+<p>Awesome. But I would like to receive more useful messages if GitHub changes URL or IDs of HTML elements.
+Let's make our code "safer":</p>
+
+<p>``` clj
+(defn error
+  "Returns \"\"#uername\" not found\" for e.g."
+  [selector]
+  {:error (str (first (vals selector)) " not found")})</p>
+
+<p>(defn safe-find-element
+  "Find the element, if the element is found, call the f,
+  if not return a map with an error."
+  [selector f]
+  (let [el (find-element selector)]</p>
+
+<pre><code>(if (:webelement el)
+  (f el)
+  (error selector))))
+</code></pre>
+
+<p>```</p>
+
+<p>It means if we find an element we call function with that element,
+if not we return error which looks like <code>{error: "#signin-email not found"}</code>.
+Nice, but not so useful so far.
+Let's wrap <code>click</code> and <code>input-text</code> functions in this wrapper.</p>
+
+<p>``` clj
+(defn- safe-input-text [selector text]
+  (safe-find-element selector</p>
+
+<pre><code>                 #(-&gt; %
+                    clear
+                    (input-text text))))
+</code></pre>
+
+<p>(defn- safe-click [selector]
+  (safe-find-element selector #(click %)))
+```</p>
+
+<p>Let's see how it works:</p>
+
+<p><code>clj
+=&gt; (safe-input-text {:css "#login_fiel"} "asd")
+{:error "#login_fiel not found"}
+</code></p>
+
+<p>And try to rewrite our code:</p>
+
+<p>``` clj
+(set-driver! {:browser :firefox})
+(to "https://github.com/login")
+(or (:error (safe-input-text {:css "#login_field"} (auth :login)))</p>
+
+<pre><code>(:error (safe-input-text {:css "#password"} (auth :pass)))
+(:error (safe-click {:xpath "//input[@type='submit']"})))
+</code></pre>
+
+<p>```</p>
+
+<p>Hm, it's not so DRY.</p>
+
+<p>``` clj
+=> (do-unless :error (safe-input-text {:css "#login_field"} (auth :login))</p>
+
+<pre><code>                 (safe-input-text {:css "#passwor"} (auth :pass))
+                 (safe-click {:xpath "//input[@type='submit']"}))
+</code></pre>
+
+<p>{:error "#passwor not found"}
+```</p>
+
+<p>Much nicer. But how is it supposed to work? Tada!</p>
+
+<p>``` clj
+(defmacro do-unless
+  "
+  Evaluates the expr if the condition which was called
+  with result of previous expression returned false.</p>
+
+<p>  Examples:
+  =========</p>
+
+<p>  (do-unless nil? (println 1) (println 2))
+  1
+  nil
+  (do-unless nil? (do (println 1) 1) (println 2))
+  1
+  2
+  nil"
+  ([condition expr &amp; exprs]
+   `(let [r# ~expr]</p>
+
+<pre><code>  (if (~condition r#)
+    r#
+    (do-unless ~condition ~@exprs))))
+</code></pre>
+
+<p>  ([condition expr]
+   expr))
+```</p>
+
+<p>Macroexpand:</p>
+
+<p>``` clj
+(macroexpand '(do-unless :error (safe-input-text {:css "#login_field"} (auth :login))</p>
+
+<pre><code>                 (safe-input-text {:css "#passwor"} (auth :pass))
+                 (safe-click {:xpath "//input[@type='submit']"})))
+</code></pre>
+
+<p>(let* [r<strong>1016</strong>auto<strong> (safe-input-text {:css "#login_field"} (auth :login))]
+  (if (:error r</strong>1016<strong>auto</strong>)</p>
+
+<pre><code>  r__1016__auto__
+  (social-phobia.core/do-unless :error
+                                (safe-input-text {:css "#passwor"} (auth :pass))
+                                (safe-click {:xpath "//input[@type='submit']"}))))
+</code></pre>
+
+<p>```</p>
+
+<p>Basically this macro recursively produces, a set of nested <code>let</code> and <code>if</code> expressions.</p>
+
+<ol>
+<li>Cache result of expression</li>
+<li>Check is't map with <code>:error</code> message or not</li>
+<li>If yes, returns that map</li>
+<li>If not start this cycle for next expression</li>
+</ol>
+
+
+<p>Nice, also it should be faster than catch exceptions and also
+we don't produce any extra function calls like we do with monads.
+I think this macro is pretty much fun for this kind of code with a purely
+imperative nature.</p>
+
+<p>Wdyt?</p>
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+</feed>

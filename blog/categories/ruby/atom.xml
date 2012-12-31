@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby | (edtsech :notes)]]></title>
+  <link href="http://edtsech.github.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://edtsech.github.com/"/>
+  <updated>2012-12-31T13:55:27+06:00</updated>
+  <id>http://edtsech.github.com/</id>
+  <author>
+    <name><![CDATA[Edward Tsech]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Destructuring]]></title>
+    <link href="http://edtsech.github.com/2012/05/destructuring.html"/>
+    <updated>2012-05-31T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2012/05/destructuring</id>
+    <content type="html"><![CDATA[<p>One feature, of the functional programming languages, which I like and which can be useful in Ruby is Destructuring.
+Ruby already has Destructuring Assignment, but only for arrays not for hashes.
+More information <a href="http://tony.pitluga.com/2011/08/08/destructuring-with-ruby.html">here</a>.</p>
+
+<p>But destructuring for hashes is available in CoffeeScript. (<a href="http://coffeescript.org/#destructuring">Destructuring assignment in CoffeeScript.</a>)</p>
+
+<p><code>ruby
+position = {x: 1, y: 2, z: 3}
+{x, y, z} = position
+x # =&gt; 1
+</code></p>
+
+<p>Possible to do in Ruby in this way:</p>
+
+<p><code>ruby
+1.9.3p125 :001 &gt; position = {x: 1, y: 2, z: 3}
+ =&gt; {:x=&gt;1, :y=&gt;2, :z=&gt;3}
+1.9.3p125 :003 &gt; x, y, z = position.values_at(:x, :y, :z)
+ =&gt; [1, 2, 3]
+1.9.3p125 :004 &gt; x
+ =&gt; 1
+</code></p>
+
+<p>But you need to write x, y, x twice, it's bad I think :)</p>
+
+<p>Also nice thing to have it's "hashes constructing" (It just how I call it):</p>
+
+<p>``` ruby
+first_name = "Edward"
+last_name  = "Tsech"
+{first_name, last_name} # equal to {first_name: first_name, last_name: last_name}</p>
+
+<h1>=> {first_name: "Edward", last_name: "Tsech"}</h1>
+
+<p>```</p>
+
+<p>Pseudo real example of usage:</p>
+
+<p><code>ruby
+user = ...
+user_info = ...
+render partial: "form", locals: { user, user_info }
+</code></p>
+
+<p>I was really surprised, when I found this feature available in CoffeeScript.
+Check it out:</p>
+
+<p><code>ruby
+$ coffee
+coffee&gt; first_name = "Edward"
+'Edward'
+coffee&gt; last_name = "Tsech"
+'Tsech'
+coffee&gt; {first_name, last_name}
+{ first_name: 'Edward', last_name: 'Tsech' }
+coffee&gt;
+</code></p>
+
+<p>If you are interested in these features and would like to have it in Ruby, welcome to
+<a href="http://bugs.ruby-lang.org/issues/6414">Ruby issue tracker</a>.</p>
+
+<h2>Links</h2>
+
+<p><a href="http://coffeescript.org/#destructuring">Destructuring Assignment In CoffeeScript</a>
+<a href="http://tony.pitluga.com/2011/08/08/destructuring-with-ruby.html">Destructuring with Ruby</a></p>
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+</feed>

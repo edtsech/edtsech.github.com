@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: fp | (edtsech :notes)]]></title>
+  <link href="http://edtsech.github.com/blog/categories/fp/atom.xml" rel="self"/>
+  <link href="http://edtsech.github.com/"/>
+  <updated>2012-12-31T13:55:27+06:00</updated>
+  <id>http://edtsech.github.com/</id>
+  <author>
+    <name><![CDATA[Edward Tsech]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Functional Injection]]></title>
+    <link href="http://edtsech.github.com/2012/11/fp.html"/>
+    <updated>2012-11-07T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2012/11/fp</id>
+    <content type="html"><![CDATA[<h3>Groovy - 2003</h3>
+
+<p>Object-oriented with first-class functions support.</p>
+
+<h3>Scala - 2003</h3>
+
+<p>"True" object-oriented and functional.</p>
+
+<h3>Fantom - 2005</h3>
+
+<p>Object-oriented with first-class functions, actors model and immutable data structures.</p>
+
+<h3>F# - 2005</h3>
+
+<p>Influenced by OCaml, multi-paradigm language, both functional and object-oriented.</p>
+
+<h3>Clojure - 2007</h3>
+
+<p>Only functional programming paradigm is supported.</p>
+
+<h3>Go - 2009</h3>
+
+<p>???</p>
+
+<h3>Rust - 2010</h3>
+
+<p>Rust is supporting pure-functional, concurrent-actor, imperative-procedural, and object-oriented styles.</p>
+
+<h3>Lambdas in Java - 2013</h3>
+
+<p>My point is that more and more languages support functional paradigm.</p>
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Language For Fast Dive Into FP]]></title>
+    <link href="http://edtsech.github.com/2012/05/fp.html"/>
+    <updated>2012-05-31T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2012/05/fp</id>
+    <content type="html"><![CDATA[<p>Python was invented as a language for a education, at least partially.
+And now this language is quite popular and used by many companies and people.
+And also Python influenced on many languages like for example Ruby or Groovy.</p>
+
+<p>But in functional world we still don't have own Python, a simple language with the dynamic typization and
+less noisy syntax. You say Scheme, SICP cources and etc. But for some people LISP's syntax isn't a synonym for
+less noisy.</p>
+
+<p>I think, we need a simple functional language with the dynamic typization, a compact syntax without noise.</p>
+
+<h2>Choose first functional language</h2>
+
+<ul>
+<li><a href="http://programmers.stackexchange.com/questions/114885/which-functional-language-is-good-for-a-beginner">http://programmers.stackexchange.com/questions/114885/which-functional-language-is-good-for-a-beginner</a></li>
+<li><a href="http://stackoverflow.com/questions/2179263/which-functional-programming-language-should-i-choose-as-first-functional-progra">http://stackoverflow.com/questions/2179263/which-functional-programming-language-should-i-choose-as-first-functional-progra</a></li>
+<li><a href="http://programmers.stackexchange.com/questions/24542/choosing-a-functional-programming-language">http://programmers.stackexchange.com/questions/24542/choosing-a-functional-programming-language</a></li>
+</ul>
+
+
+<h2>Lisp Without Parentheses</h2>
+
+<ul>
+<li><a href="http://pschombe.wordpress.com/2006/04/16/lisp-without-parentheses/">http://pschombe.wordpress.com/2006/04/16/lisp-without-parentheses/</a></li>
+</ul>
+
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+</feed>

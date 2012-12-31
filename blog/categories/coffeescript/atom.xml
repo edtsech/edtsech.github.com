@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: coffeescript | (edtsech :notes)]]></title>
+  <link href="http://edtsech.github.com/blog/categories/coffeescript/atom.xml" rel="self"/>
+  <link href="http://edtsech.github.com/"/>
+  <updated>2012-12-31T13:55:27+06:00</updated>
+  <id>http://edtsech.github.com/</id>
+  <author>
+    <name><![CDATA[Edward Tsech]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Destructuring]]></title>
+    <link href="http://edtsech.github.com/2012/05/destructuring.html"/>
+    <updated>2012-05-31T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2012/05/destructuring</id>
+    <content type="html"><![CDATA[<p>One feature, of the functional programming languages, which I like and which can be useful in Ruby is Destructuring.
+Ruby already has Destructuring Assignment, but only for arrays not for hashes.
+More information <a href="http://tony.pitluga.com/2011/08/08/destructuring-with-ruby.html">here</a>.</p>
+
+<p>But destructuring for hashes is available in CoffeeScript. (<a href="http://coffeescript.org/#destructuring">Destructuring assignment in CoffeeScript.</a>)</p>
+
+<p><code>ruby
+position = {x: 1, y: 2, z: 3}
+{x, y, z} = position
+x # =&gt; 1
+</code></p>
+
+<p>Possible to do in Ruby in this way:</p>
+
+<p><code>ruby
+1.9.3p125 :001 &gt; position = {x: 1, y: 2, z: 3}
+ =&gt; {:x=&gt;1, :y=&gt;2, :z=&gt;3}
+1.9.3p125 :003 &gt; x, y, z = position.values_at(:x, :y, :z)
+ =&gt; [1, 2, 3]
+1.9.3p125 :004 &gt; x
+ =&gt; 1
+</code></p>
+
+<p>But you need to write x, y, x twice, it's bad I think :)</p>
+
+<p>Also nice thing to have it's "hashes constructing" (It just how I call it):</p>
+
+<p>``` ruby
+first_name = "Edward"
+last_name  = "Tsech"
+{first_name, last_name} # equal to {first_name: first_name, last_name: last_name}</p>
+
+<h1>=> {first_name: "Edward", last_name: "Tsech"}</h1>
+
+<p>```</p>
+
+<p>Pseudo real example of usage:</p>
+
+<p><code>ruby
+user = ...
+user_info = ...
+render partial: "form", locals: { user, user_info }
+</code></p>
+
+<p>I was really surprised, when I found this feature available in CoffeeScript.
+Check it out:</p>
+
+<p><code>ruby
+$ coffee
+coffee&gt; first_name = "Edward"
+'Edward'
+coffee&gt; last_name = "Tsech"
+'Tsech'
+coffee&gt; {first_name, last_name}
+{ first_name: 'Edward', last_name: 'Tsech' }
+coffee&gt;
+</code></p>
+
+<p>If you are interested in these features and would like to have it in Ruby, welcome to
+<a href="http://bugs.ruby-lang.org/issues/6414">Ruby issue tracker</a>.</p>
+
+<h2>Links</h2>
+
+<p><a href="http://coffeescript.org/#destructuring">Destructuring Assignment In CoffeeScript</a>
+<a href="http://tony.pitluga.com/2011/08/08/destructuring-with-ruby.html">Destructuring with Ruby</a></p>
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CoffeeScript]]></title>
+    <link href="http://edtsech.github.com/2011/11/coffeescript.html"/>
+    <updated>2011-11-22T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2011/11/coffeescript</id>
+    <content type="html"><![CDATA[<h2>What is it?</h2>
+
+<ul>
+<li>CoffeeScript is a little language that compiles into JavaScript.</li>
+<li>The golden rule of CoffeeScript is: &#8220;It&#8217;s just JavaScript&#8221;.</li>
+</ul>
+
+
+<p>More info in <a href="http://jashkenas.github.com/coffee-script/">README</a></p>
+
+<p>When I saw CoffeeScript first time it looks weird: &#8216;:&#8217; instead of &#8216;=&#8217; and other strange things.
+And I wasn&#8217;t good about that. But things change and opinions of people too.
+Now I have very positive opinion about CS not only because CS makes code less noisy, more structured, more readable and less buggy,
+mostly because ECMAScript and CoffeeScript evolve together.
+And it makes CoffeeScript not &#8220;Yet another <a href='https://github.com/jashkenas/coffee-script/wiki/List-of-languages-that-compile-to-JS'>language that compiles to JavaScript</a>&#8221;.
+CS has big influence on future and present of ECMAScript, I think.
+Below I have some examples(it&#8217;s not actually examples, just some links to CS website) of features that will be provided in ES6(in future version of ECMAScript specification)
+and these features already implemented in CS, some of them was borrowed from CS.
+I think, it's awesome because we can just use nice features NOW.
+Also CoffeeScript provides big portion of syntax sugar(short functions, optional return, ranges, additional operators, string interpolation and etc) and
+fixes some bad parts of JavaScript:</p>
+
+<h2>Fixes</h2>
+
+<ul>
+<li>Problems with global scope (each file wraps to anonymous function)</li>
+<li>Problems with weak typization (CS internally always uses === operator)</li>
+<li>Awkward semicolons (CS has indentation syntax)</li>
+</ul>
+
+
+<h2>Features</h2>
+
+<p>Some features that will be in ES6/ES.next/ES Harmony and that already exist in CoffeeScript:</p>
+
+<ul>
+<li><a href="http://jashkenas.github.com/coffee-script/#splats">Splats</a></li>
+<li><a href="http://jashkenas.github.com/coffee-script/#destructuring">Destructuring</a></li>
+<li><a href="http://jashkenas.github.com/coffee-script/#literals">Arrow functions</a></li>
+<li><a href="http://jashkenas.github.com/coffee-script/#fat_arrow" title="">Function binding (fat arrow)</a></li>
+</ul>
+
+
+<h2>Links</h2>
+
+<ul>
+<li><a href="http://jashkenas.github.com/coffee-script/">CoffeeScript Home Page</a></li>
+<li><a href="http://blip.tv/jsconf/jsconf2011-jeremy-ashkenas-5258082">JSConf 2011, about CS and future of JS</a></li>
+<li>Dmitry Soshnikov about future of ECMAScript: <a href='http://blip.tv/falsyvalues/falsy-values-2010-dmitry-soshnikov-5600275'>video</a> and <a href='http://www.slideshare.net/dmitrysoshnikov/falsyvalues-dmitry-soshnikov-ecmascript-6'>slides</a></li>
+</ul>
+
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+</feed>

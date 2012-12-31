@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: clojure | (edtsech :notes)]]></title>
+  <link href="http://edtsech.github.com/blog/categories/clojure/atom.xml" rel="self"/>
+  <link href="http://edtsech.github.com/"/>
+  <updated>2012-12-31T13:55:27+06:00</updated>
+  <id>http://edtsech.github.com/</id>
+  <author>
+    <name><![CDATA[Edward Tsech]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[and-let macro]]></title>
+    <link href="http://edtsech.github.com/2012/12/and-let.html"/>
+    <updated>2012-12-30T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2012/12/and-let</id>
+    <content type="html"><![CDATA[<p>In Clojure we have two nice macros <a href="http://clojuredocs.org/clojure_core/clojure.core/if-let">if-let</a>
+and <a href="http://clojuredocs.org/clojure_core/clojure.core/when-let">when-let</a>.</p>
+
+<p>``` clj
+(if-let [a ...]
+  (inc a)
+  0)</p>
+
+<p>; or we can use <code>when-let</code> when we don't have <code>else</code> branch</p>
+
+<p>(when-let [a ...]
+  (inc a))
+```</p>
+
+<p>but unfortunately we can't pass more than two binding forms to
+these functions, and emulate the behavior of Scheme's <a href="http://www.gnu.org/software/mit-scheme/documentation/mit-scheme-ref/and_002dlet_002a-_0028SRFI-2_0029.html">and-let</a>
+or kind of maybe monad.</p>
+
+<p>I mean smth like that:</p>
+
+<p>``` clj
+(and-let [a 1 b 2]</p>
+
+<pre><code>     (+ a b)) ; =&gt; 3
+</code></pre>
+
+<p>(and-let [a 1 b nil]</p>
+
+<pre><code>     (+ a b)) ; =&gt; nil
+</code></pre>
+
+<p>```</p>
+
+<p>It isn't really hard to implement it:</p>
+
+<p>``` clj
+(defmacro and-let [bindings expr]
+  (if (seq bindings)</p>
+
+<pre><code>`(if-let [~(first bindings) ~(second bindings)]
+   (and-let ~(drop 2 bindings) ~expr))
+ expr))
+</code></pre>
+
+<p>(use 'clojure.walk)
+(macroexpand-all '(and-let [a 1 b 2]</p>
+
+<pre><code>                       (+ a b)))
+</code></pre>
+
+<p>; (let<em> [temp<strong>3971</strong>auto<strong> 1]
+;   (if temp</strong>3971<strong>auto</strong>
+;     (let</em> [a temp<strong>3971</strong>auto<strong>]
+;       (let* [temp</strong>3971<strong>auto</strong> 2]
+;         (if temp<strong>3971</strong>auto<strong>
+;           (let* [b temp</strong>3971<strong>auto</strong>]<br/>
+;             (+ a b))
+;           nil)))
+;     nil))</p>
+
+<p>```</p>
+
+<p>But we could do some improvements here: check count of binding form (should be even),
+implement <code>else</code> clause, probably find a better name, implementation.</p>
+
+<p>I'm not really sure about <code>else</code> clause, it can be very useful, but it sounds weird to have <code>else</code> part
+with <code>and-let</code> name. I thought about <code>if-let*</code> and <code>when-let*</code> names, it looks idiomatic for other Lisps
+but not for Clojure I think.</p>
+
+<p>I think Clojure way, will be - change a behavior of <code>if-let</code> and <code>when-let</code> macros in Clojure to support
+more than two binding forms, because <code>let</code> already does it.</p>
+
+<p>Wdyt?</p>
+
+<p>PS. Another option is use the maybe monad from <code>algo.monads</code> but it's extra dependency for relatively
+small amount of code (if you don't plan use monads really often) and slightly different behavior.</p>
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Do unless]]></title>
+    <link href="http://edtsech.github.com/2012/11/do-unless.html"/>
+    <updated>2012-11-20T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2012/11/do-unless</id>
+    <content type="html"><![CDATA[<p>Whilst experimenting with <a href="https://github.com/semperos/clj-webdriver">clj-webdriver</a>
+and writing <a href="https://github.com/edtsech/social-phobia">social-phobia</a>
+I have created an interesting macro and would like to share it with you and get some feedback.</p>
+
+<p>Lets write some simple script, log in to GitHub</p>
+
+<p><code>clj
+(set-driver! {:browser :firefox})
+(to "https://github.com/login")
+(input-text "#login_field" (auth :login))
+(input-text "#password" (auth :pass))
+(click {:xpath "//input[@type='submit']"})
+...
+</code></p>
+
+<p>If we have wrong URL or don't have an element on the page, we basically get that:</p>
+
+<p><code>clj
+NullPointerException   clojure.lang.Reflector.invokeInstanceMethod (Reflector.java:26)
+</code></p>
+
+<p>In a different way we can get the same result like this:</p>
+
+<p>``` clj
+=> (def el (find-element {:css "#login_fiel"}))</p>
+
+<h1>'user/el</h1>
+
+<p>=> el</p>
+
+<h1>clj_webdriver.element.Element{:webelement nil}</h1>
+
+<p>=> (input-text el "asd")
+NullPointerException   clojure.lang.Reflector.invokeInstanceMethod (Reflector.java:26)
+```</p>
+
+<p>Awesome. But I would like to receive more useful messages if GitHub changes URL or IDs of HTML elements.
+Let's make our code "safer":</p>
+
+<p>``` clj
+(defn error
+  "Returns \"\"#uername\" not found\" for e.g."
+  [selector]
+  {:error (str (first (vals selector)) " not found")})</p>
+
+<p>(defn safe-find-element
+  "Find the element, if the element is found, call the f,
+  if not return a map with an error."
+  [selector f]
+  (let [el (find-element selector)]</p>
+
+<pre><code>(if (:webelement el)
+  (f el)
+  (error selector))))
+</code></pre>
+
+<p>```</p>
+
+<p>It means if we find an element we call function with that element,
+if not we return error which looks like <code>{error: "#signin-email not found"}</code>.
+Nice, but not so useful so far.
+Let's wrap <code>click</code> and <code>input-text</code> functions in this wrapper.</p>
+
+<p>``` clj
+(defn- safe-input-text [selector text]
+  (safe-find-element selector</p>
+
+<pre><code>                 #(-&gt; %
+                    clear
+                    (input-text text))))
+</code></pre>
+
+<p>(defn- safe-click [selector]
+  (safe-find-element selector #(click %)))
+```</p>
+
+<p>Let's see how it works:</p>
+
+<p><code>clj
+=&gt; (safe-input-text {:css "#login_fiel"} "asd")
+{:error "#login_fiel not found"}
+</code></p>
+
+<p>And try to rewrite our code:</p>
+
+<p>``` clj
+(set-driver! {:browser :firefox})
+(to "https://github.com/login")
+(or (:error (safe-input-text {:css "#login_field"} (auth :login)))</p>
+
+<pre><code>(:error (safe-input-text {:css "#password"} (auth :pass)))
+(:error (safe-click {:xpath "//input[@type='submit']"})))
+</code></pre>
+
+<p>```</p>
+
+<p>Hm, it's not so DRY.</p>
+
+<p>``` clj
+=> (do-unless :error (safe-input-text {:css "#login_field"} (auth :login))</p>
+
+<pre><code>                 (safe-input-text {:css "#passwor"} (auth :pass))
+                 (safe-click {:xpath "//input[@type='submit']"}))
+</code></pre>
+
+<p>{:error "#passwor not found"}
+```</p>
+
+<p>Much nicer. But how is it supposed to work? Tada!</p>
+
+<p>``` clj
+(defmacro do-unless
+  "
+  Evaluates the expr if the condition which was called
+  with result of previous expression returned false.</p>
+
+<p>  Examples:
+  =========</p>
+
+<p>  (do-unless nil? (println 1) (println 2))
+  1
+  nil
+  (do-unless nil? (do (println 1) 1) (println 2))
+  1
+  2
+  nil"
+  ([condition expr &amp; exprs]
+   `(let [r# ~expr]</p>
+
+<pre><code>  (if (~condition r#)
+    r#
+    (do-unless ~condition ~@exprs))))
+</code></pre>
+
+<p>  ([condition expr]
+   expr))
+```</p>
+
+<p>Macroexpand:</p>
+
+<p>``` clj
+(macroexpand '(do-unless :error (safe-input-text {:css "#login_field"} (auth :login))</p>
+
+<pre><code>                 (safe-input-text {:css "#passwor"} (auth :pass))
+                 (safe-click {:xpath "//input[@type='submit']"})))
+</code></pre>
+
+<p>(let* [r<strong>1016</strong>auto<strong> (safe-input-text {:css "#login_field"} (auth :login))]
+  (if (:error r</strong>1016<strong>auto</strong>)</p>
+
+<pre><code>  r__1016__auto__
+  (social-phobia.core/do-unless :error
+                                (safe-input-text {:css "#passwor"} (auth :pass))
+                                (safe-click {:xpath "//input[@type='submit']"}))))
+</code></pre>
+
+<p>```</p>
+
+<p>Basically this macro recursively produces, a set of nested <code>let</code> and <code>if</code> expressions.</p>
+
+<ol>
+<li>Cache result of expression</li>
+<li>Check is't map with <code>:error</code> message or not</li>
+<li>If yes, returns that map</li>
+<li>If not start this cycle for next expression</li>
+</ol>
+
+
+<p>Nice, also it should be faster than catch exceptions and also
+we don't produce any extra function calls like we do with monads.
+I think this macro is pretty much fun for this kind of code with a purely
+imperative nature.</p>
+
+<p>Wdyt?</p>
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clojure Templating]]></title>
+    <link href="http://edtsech.github.com/2012/09/clojure-templating.html"/>
+    <updated>2012-09-07T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2012/09/clojure-templating</id>
+    <content type="html"><![CDATA[<p>In this note I would like to describe current situation of dealing with templates in Clojure.
+We have four most known options:</p>
+
+<ul>
+<li><a href="https://github.com/fhd/clostache" title="">Clostache</a></li>
+<li><a href="https://github.com/cgrand/enlive" title="">Enlive</a></li>
+<li><a href="https://github.com/Flamefork/fleet" title="">Fleet</a></li>
+<li><a href="https://github.com/weavejester/hiccup">Hiccup</a></li>
+</ul>
+
+
+<p>Let's start with Fleet. Fleet is pretty similar to old ERB or JSP way of working with templates:</p>
+
+<p>``` clj</p>
+
+<p><%= (post :body) %></p>
+```
+
+In fact it's not so popular in Clojure world probably because main philosophy of Lisp is
+"code as data". And it's also true for templates. It's where Hiccup shines:
+
+``` clj
+[:p (post :body)]
+```
+
+As you can see, it's just Clojure vector, first element of this vector is tag name and second one is content.
+You can add attributes to the tag:
+
+``` clj
+[:link {:href "www.example.com"} "Example"]
+```
+
+We can easily make abstraction on it and keep it as a helper:
+
+``` clj
+(defn link [href name] [:link {:href href} name])
+(link "www.example.com" "Example")
+; => [:link {:href "www.example.com"} "Example"]
+```
+
+For converting it to html you need to pass it to `html` function:
+
+``` clj
+(html (link "www.example.com" "Example"))
+; => "<a href=\"www.example.com\">Example</a> "
+```
+
+You can make your own collection of helpers and partials which will be easy to embed in your code.
+lso you can find basic low-lewel helpers as `link-to` and `form-to` and so on in Hiccup
+[itself](https://github.com/weavejester/hiccup/blob/master/src/hiccup/element.clj).
+Hiccup is quite popular in Clojure comunity and it's used as part of
+[Noir framework](webnoir.org).
+You don't have to write Hiccup templates by yourself if you already have HTML file from a designer, there are some
+[tools](https://github.com/weavejester/hiccup/wiki/Converting-html-to-hiccup) which can help you to convert HTML file to Hiccup.
+
+If you are sceptic about all this stuff like \"code as data\" in templates you're able to choose Clostache.
+It's just [Mustache](http://mustache.github.com/)
+implementation in Clojure. I think you already know that. This how it looks in Clojure.
+
+``` clj
+(render "Hello, !" {:name "Felix"})
+```
+
+Also we have some pretty interesting approach which calls Enlive, it's similar to XSLT transformation,
+but instead of noisy XML we have Clojure which is Lisp which is executable XML :)
+The main idea is keep our html for a designer. Just do nothing with it.
+No ERB templates, Mustache or any other templates. Just plain HTML and transformations.
+There is a little bit more code for explanation how it works that is why I've placed this code to the
+[gist](https://gist.github.com/3672297).
+
+I think it will be unuseful try to describe pros and cons of each of these template libraries,
+because it's really depends on which process you use to work with your templates.
+
+Also there is fifth hidden option is use templating on the front-end :)
+
+## Peace!
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rubyists, Clojure Is Your Friend]]></title>
+    <link href="http://edtsech.github.com/2012/07/clojure-is-your-friend.html"/>
+    <updated>2012-07-08T00:00:00+06:00</updated>
+    <id>http://edtsech.github.com/2012/07/clojure-is-your-friend</id>
+    <content type="html"><![CDATA[<p>Some infantile, spontaneous and subjective info about Clojure for Rubyists.</p>
+
+<ul>
+<li>Clojure is your friend</li>
+<li>Clojure is dynamically typed, as Ruby</li>
+<li>Clojure is like Ruby :) But everything isn't an object it's a function: <a href="http://clojure.org/data_structures">Clojure data structures</a></li>
+</ul>
+
+
+<p>``` clj
+; Usual function call (if you forgot how lispy syntax looks like):
+(+ 1 2) ; => 3</p>
+
+<p>; Clojure's Keyword is like Ruby's Symbol and it's a function:
+(:text {:text "Hello"}) ; => "Hello"</p>
+
+<p>; Clojure's Maps is like Ruby's Hashes and it's functions too:
+({:text "Hello"} :text) ; => "Hello"
+```</p>
+
+<ul>
+<li>Falsy values in Clojure like in Ruby: nil and false <a href="http://blog.jayfields.com/2011/02/clojure-truthy-and-falsey.html">Clojure: Truthy and Falsey</a></li>
+</ul>
+
+
+<p><code>clj
+(boolean nil)   ; =&gt; false
+(boolean false) ; =&gt; false
+(boolean 0)     ; =&gt; true
+(boolean [])    ; =&gt; true
+(boolean '())   ; =&gt; true
+</code></p>
+
+<ul>
+<li>I know, all Rubyists like metaprogramming and awesome DSLs <a href="https://github.com/weavejester/compojure/wiki/Getting-Started">Compojure</a></li>
+</ul>
+
+
+<p><code>clj
+; Sinatra like DSL
+(defroutes main-routes
+  (GET "/" [] "Hello World Wide Web!")
+  (route/resources "/")
+  (route/not-found "Page not found"))
+</code></p>
+
+<p><a href="http://sqlkorma.com/">Korma</a></p>
+
+<p>``` clj
+; SQL DSL
+(defdb prod (postgres {:db "korma"</p>
+
+<pre><code>                   :user "db"
+                   :password "dbpass"}))
+</code></pre>
+
+<p>(defentity address)
+(defentity user
+  (has-one address))</p>
+
+<p>(select user
+  (with address)
+  (fields :firstName :lastName :address.state)
+  (where {:email "korma@sqlkorma.com"}))
+```</p>
+
+<p>Or you can write your own language "conditional expression" (thanks to Lisp's homoiconicity, parentheses and macros):</p>
+
+<p>``` clj
+(defmacro unless [expr form]
+  (list 'if expr nil form))</p>
+
+<p>(def good-cop true)</p>
+
+<p>(unless good-cop (println "I say everything"))
+; nil
+(unless (not good-cop) (println "I say everything!"))
+; I say everything!
+```</p>
+
+<p>Use dashes for naming things, I know you like underscores, but dashes aren't bad too</p>
+
+<p>``` clj
+(def good-cop)
+; instead of
+(def good_cop)</p>
+
+<p>; You can use "?" and "!", actually it came to Ruby from Lisp
+(keyword? :key) ; => true</p>
+
+<p>; But sometimes you can do smth crazy, when noboby's watching:
+(def X__X "I'm die")
+```</p>
+
+<ul>
+<li>Clojure has good ecosystem</li>
+<li>Clojure is concurrency</li>
+<li>Clojure is immutability</li>
+<li>Clojure is simple syntax</li>
+<li>Clojure is simple, but not easy (" <a href="http://www.infoq.com/presentations/Simple-Made-Easy">Simple Made Easy</a> ")</li>
+<li>Clojure is data, not objects</li>
+<li>Clojure is composable libraries, not full-stack frameworks, not looking for Rails here, but there is some <a href="https://github.com/macourtney/Conjure">Conjure</a></li>
+<li>Ruby and Clojure are influenced by Lisp, of course Clojure is more influenced, you get all power of homoiconicity and more addicted to FP language</li>
+<li>Even if you don't love parentheses, parentheses love you!</li>
+<li>Clojure is your friend, isn't it?</li>
+</ul>
+
+
+<h2>Links</h2>
+
+<ul>
+<li><a href="http://tryclj.com/">Try Clojure</a></li>
+<li><a href="http://himera.herokuapp.com/index.html">Try ClojureScript</a></li>
+<li><a href="http://www.slideshare.net/yukihiro_matz/how-emacs-changed-my-life">How Emacs changed my Life - matz</a></li>
+<li><a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/179642">Ruby's lisp features</a></li>
+<li><a href="http://www.slideshare.net/antoniogarrote/lisp-vs-ruby-metaprogramming-3222908">Lisp (vs Ruby) Metaprogramming</a></li>
+<li><a href="http://www.infoq.com/interviews/yukihiro-matz-language-design/">Ruby Creator Yukihiro 'matz' about Ruby, Functional Programming and Programming Languages Design</a></li>
+<li><a href="http://briancarper.net/blog/536/clojure-from-a-ruby-perspective">Clojure, from a Ruby perspective</a></li>
+</ul>
+
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+</feed>
