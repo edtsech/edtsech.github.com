@@ -4,7 +4,7 @@
   <title><![CDATA[Category: clojure | (edtsech :notes)]]></title>
   <link href="http://edtsech.github.com/blog/categories/clojure/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2012-12-31T11:13:33+06:00</updated>
+  <updated>2012-12-31T16:01:49+06:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
@@ -33,7 +33,7 @@ and <a href="http://clojuredocs.org/clojure_core/clojure.core/when-let">when-let
 ```</p>
 
 <p>but unfortunately we can't pass more than two binding forms to
-these functions, and emulate the behavior of Scheme's <a href="http://www.gnu.org/software/mit-scheme/documentation/mit-scheme-ref/and_002dlet_002a-_0028SRFI-2_0029.html">and-let</a>
+these macros, and emulate the behavior of Scheme's <a href="http://www.gnu.org/software/mit-scheme/documentation/mit-scheme-ref/and_002dlet_002a-_0028SRFI-2_0029.html">and-let</a>
 or kind of maybe monad.</p>
 
 <p>I mean smth like that:</p>
