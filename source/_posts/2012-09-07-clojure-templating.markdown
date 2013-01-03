@@ -17,7 +17,7 @@ We have four most known options:
 Let's start with Fleet. Fleet is pretty similar to old ERB or JSP way of working with templates:
 
 ``` clj
-<p><%= (post :body) %></p>
+<p><(post :body)></p>
 ```
 
 In fact it's not so popular in Clojure world probably because main philosophy of Lisp is
