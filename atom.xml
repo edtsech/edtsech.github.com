@@ -4,7 +4,7 @@
   <title><![CDATA[(edtsech :notes)]]></title>
   <link href="http://edtsech.github.com/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2012-12-31T16:01:49+06:00</updated>
+  <updated>2013-01-03T23:49:09+06:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
@@ -570,7 +570,7 @@ We have four most known options:</p>
 <p>Let&#8217;s start with Fleet. Fleet is pretty similar to old ERB or JSP way of working with templates:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='clj'><span class='line'><span class="nv">&lt;p&gt;&lt;%=</span> <span class="p">(</span><span class="nf">post</span> <span class="ss">:body</span><span class="p">)</span> <span class="nv">%&gt;&lt;/p&gt;</span>
+</pre></td><td class='code'><pre><code class='clj'><span class='line'><span class="nv">&lt;p&gt;&lt;</span><span class="p">(</span><span class="nf">post</span> <span class="ss">:body</span><span class="p">)</span><span class="nv">&gt;&lt;/p&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
