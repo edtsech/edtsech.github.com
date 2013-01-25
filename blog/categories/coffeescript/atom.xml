@@ -4,7 +4,7 @@
   <title><![CDATA[Category: coffeescript | (edtsech :notes)]]></title>
   <link href="http://edtsech.github.com/blog/categories/coffeescript/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2013-01-04T00:00:56+06:00</updated>
+  <updated>2013-01-20T15:33:48+01:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Destructuring]]></title>
     <link href="http://edtsech.github.com/2012/05/destructuring.html"/>
-    <updated>2012-05-31T00:00:00+06:00</updated>
+    <updated>2012-05-31T00:00:00+02:00</updated>
     <id>http://edtsech.github.com/2012/05/destructuring</id>
     <content type="html"><![CDATA[<p>One feature, of the functional programming languages, which I like and which can be useful in Ruby is Destructuring.
 Ruby already has Destructuring Assignment, but only for arrays not for hashes.
@@ -91,7 +91,7 @@ coffee&gt;
   <entry>
     <title type="html"><![CDATA[CoffeeScript]]></title>
     <link href="http://edtsech.github.com/2011/11/coffeescript.html"/>
-    <updated>2011-11-22T00:00:00+06:00</updated>
+    <updated>2011-11-22T00:00:00+01:00</updated>
     <id>http://edtsech.github.com/2011/11/coffeescript</id>
     <content type="html"><![CDATA[<h2>What is it?</h2>
 

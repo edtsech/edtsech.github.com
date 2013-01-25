@@ -4,7 +4,7 @@
   <title><![CDATA[Category: papertrail | (edtsech :notes)]]></title>
   <link href="http://edtsech.github.com/blog/categories/papertrail/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2013-01-04T00:00:56+06:00</updated>
+  <updated>2013-01-20T15:33:48+01:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[PaperTrail Ignore vs Skip]]></title>
     <link href="http://edtsech.github.com/2011/11/paper-trail-ignore-vs-skip.html"/>
-    <updated>2011-11-17T00:00:00+06:00</updated>
+    <updated>2011-11-17T00:00:00+01:00</updated>
     <id>http://edtsech.github.com/2011/11/paper-trail-ignore-vs-skip</id>
     <content type="html"><![CDATA[<p>:skip attribute/key was released in PaperTrail 2.4.1 What are the differences between :ignore and :skip?
 For example we have <b>Article</b> model with ignored <b>title</b> field and skipped <code>file_upload</code> field:</p>
@@ -78,7 +78,7 @@ data of <b>skiped</b> columns in object dump. That's it.</p>
   <entry>
     <title type="html"><![CDATA[PaperTrail 2.2.7-2.4.0 changes]]></title>
     <link href="http://edtsech.github.com/2011/10/paper-trail-2.2.7-2.4.0-changes.html"/>
-    <updated>2011-10-20T00:00:00+06:00</updated>
+    <updated>2011-10-20T00:00:00+02:00</updated>
     <id>http://edtsech.github.com/2011/10/paper-trail-2.2.7-2.4.0-changes</id>
     <content type="html"><![CDATA[<h2>1. Changeset</h2>
 

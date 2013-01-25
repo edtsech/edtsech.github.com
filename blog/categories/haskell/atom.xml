@@ -4,7 +4,7 @@
   <title><![CDATA[Category: haskell | (edtsech :notes)]]></title>
   <link href="http://edtsech.github.com/blog/categories/haskell/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2013-01-04T00:00:56+06:00</updated>
+  <updated>2013-01-20T15:33:48+01:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Haskell Operators]]></title>
     <link href="http://edtsech.github.com/2012/11/haskell-operators.html"/>
-    <updated>2012-11-10T00:00:00+06:00</updated>
+    <updated>2012-11-10T00:00:00+01:00</updated>
     <id>http://edtsech.github.com/2012/11/haskell-operators</id>
     <content type="html"><![CDATA[<p>Haskell operators are just functions like in Lisp.</p>
 
@@ -113,7 +113,7 @@ True
   <entry>
     <title type="html"><![CDATA[Carrying in Haskell]]></title>
     <link href="http://edtsech.github.com/2012/11/carrying-in-haskell.html"/>
-    <updated>2012-11-10T00:00:00+06:00</updated>
+    <updated>2012-11-10T00:00:00+01:00</updated>
     <id>http://edtsech.github.com/2012/11/carrying-in-haskell</id>
     <content type="html"><![CDATA[<p>Carrying in Haskell is enabled by default. It means each function takes one argument and returns result or other function.</p>
 

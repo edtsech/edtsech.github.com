@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: emacs | (edtsech :notes)]]></title>
+  <link href="http://edtsech.github.com/blog/categories/emacs/atom.xml" rel="self"/>
+  <link href="http://edtsech.github.com/"/>
+  <updated>2013-01-20T15:33:48+01:00</updated>
+  <id>http://edtsech.github.com/</id>
+  <author>
+    <name><![CDATA[Edward Tsech]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Vim -> Emacs]]></title>
+    <link href="http://edtsech.github.com/2012/12/vim-to-emacs.html"/>
+    <updated>2012-12-30T00:00:00+01:00</updated>
+    <id>http://edtsech.github.com/2012/12/vim-to-emacs</id>
+    <content type="html"><![CDATA[<p>As you probably know I'm active Vim user, I use Vim daily for
+about 3 years. I've started with a vimconfig of my friend
+<a href="https://github.com/kossnocorp">@kossnocorp</a>
+then I tried Vim distribution called "Janus",
+but it was complex and I decided to
+create my own small <a href="https://github.com/edtsech/dotvim">vimconfig</a>,
+now it's about 200 LOC and I'm always trying to keep it as simple as possible.
+I've not written any single Vim plugin in the three years,
+I have a small one (<a href="https://github.com/edtsech/vim-railsapi">vim-railsapi</a>,
+but it's not really smth serious, one of the reasons is VimL, I think :)</p>
+
+<h2>A few days ago</h2>
+
+<p>I've decided to try Emacs.</p>
+
+<p>Why?</p>
+
+<ul>
+<li>EmacsLisp instead of VimL</li>
+<li>Built-in package manager from version 24</li>
+<li>Good support for Lisps including Clojure</li>
+<li>And of course just for fun</li>
+</ul>
+
+
+<h2>What do I really need?</h2>
+
+<ul>
+<li>Of course Vi motions</li>
+<li>Relative numbers</li>
+<li>Supertab auto completion</li>
+<li>Buffer explorer</li>
+<li>Ack for files</li>
+</ul>
+
+
+<p>Support for langauges it's not really a problem in editors like Emacs, I think,
+that is why I'm not counting it here.</p>
+
+<p>I stared with my own empty <a href="https://github.com/edtsech/.emacs.d">.emacs.d</a>
+First thing I added was <a href="http://emacswiki.org/emacs/Evil">evil-mode</a>, because
+my fingers can't live w/o vi-motions. Evil-mode works really perfect without any problems
+and helped me to reduce amount of Ctrl clicks.</p>
+
+<p>Next step is relative numbers and I was surprised to find mode for that <a href="https://github.com/coldnew/linum-relative">linum-relative</a>
+which is good and customizable.</p>
+
+<p>For auto completion I've stared with <a href="http://emacswiki.org/emacs/AutoComplete">auto-complete</a> which works great,
+but popup window doesn't look beautiful.
+<img src="http://dl.dropbox.com/u/2428018/Screenshots/07.png" alt="emacs popup" /></p>
+
+<p><em>Buffer List</em> is kind of built-in buffer explorer in Emacs you can open it with <code>C-x b</code>
+<img src="http://dl.dropbox.com/u/2428018/Screenshots/09.png" alt="buffer list" /></p>
+
+<p>And for Ack I've just installed ack plugin via elpa.
+<img src="http://dl.dropbox.com/u/2428018/Screenshots/0a.png" alt="list-packages" /></p>
+
+<p>Basically you have mode/packages for everything:</p>
+
+<ul>
+<li>Rails with rinari</li>
+<li>Clojure mode</li>
+<li>Paredit mode</li>
+<li>Ruby mode</li>
+<li>YAML mode</li>
+<li>SML mode</li>
+<li>Haskell mode</li>
+<li>Cucumber with feature-mode</li>
+<li>Zencoding mode</li>
+<li>...</li>
+</ul>
+
+
+<p>I've spent one single day to setup my Emacs environment
+and I feel myself pretty comfortabe. Which is amazing.
+Let's see if it helps me to increase my productivity.</p>
+
+<h2>PS: Emacs crash course</h2>
+
+<ul>
+<li>Close Emacs: <code>C-x C-c</code></li>
+<li>Open file: <code>C-x C-f</code></li>
+<li>Swith "split": <code>C-x o</code></li>
+<li>Make horizontal "split": <code>C-x 2</code></li>
+<li>Make vertical "split": <code>C-x 3</code></li>
+<li>Kill buffer: <code>C-x k</code></li>
+</ul>
+
+
+<h2>Peace!</h2>
+]]></content>
+  </entry>
+  
+</feed>
