@@ -6,7 +6,7 @@ comments: true
 categories: vim emacs
 ---
 
-As you probably know I'm active Vim user, I use Vim daily for
+As you probably know I'm active Vim user, I've been using Vim daily for
 about 3 years. I've started with a vimconfig of my friend
 [@kossnocorp](https://github.com/kossnocorp)
 then I tried Vim distribution called "Janus",
@@ -26,6 +26,7 @@ Why?
 - EmacsLisp instead of VimL
 - Built-in package manager from version 24
 - Good support for Lisps including Clojure
+- And for other funcitonal languages
 - And of course just for fun
 
 ## What do I really need?
@@ -54,7 +55,7 @@ but popup window doesn't look beautiful. Also "smart-tab" mode is available.
 *Buffer List* is kind of built-in buffer explorer in Emacs you can open it with `C-x b`
 ![buffer list](http://dl.dropbox.com/u/2428018/Screenshots/09.png)
 
-And for Ack I've just installed ack plugin via elpa.
+And for Ack I've just installed ack plugin.
 ![list-packages](http://dl.dropbox.com/u/2428018/Screenshots/0a.png)
 
 Basically you have mode/packages for everything:
