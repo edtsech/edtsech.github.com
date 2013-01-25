@@ -39,7 +39,7 @@ Why?
 Support for langauges it's not really a problem in editors like Emacs, I think,
 that is why I'm not counting it here.
 
-I stared with my own empty [.emacs.d](https://github.com/edtsech/.emacs.d)
+I started with my own empty [.emacs.d](https://github.com/edtsech/.emacs.d)
 First thing I added was [evil-mode](http://emacswiki.org/emacs/Evil), because
 my fingers can't live w/o vi-motions. Evil-mode works really perfect without any problems
 and helped me to reduce amount of Ctrl clicks.
@@ -47,8 +47,8 @@ and helped me to reduce amount of Ctrl clicks.
 Next step is relative numbers and I was surprised to find mode for that [linum-relative](https://github.com/coldnew/linum-relative)
 which is good and customizable.
 
-For auto completion I've stared with [auto-complete](http://emacswiki.org/emacs/AutoComplete) which works great,
-but popup window doesn't look beautiful.
+For auto completion I've started with [auto-complete](http://emacswiki.org/emacs/AutoComplete) which works great,
+but popup window doesn't look beautiful. Also "smart-tab" mode is available.
 ![emacs popup](http://dl.dropbox.com/u/2428018/Screenshots/07.png)
 
 *Buffer List* is kind of built-in buffer explorer in Emacs you can open it with `C-x b`
