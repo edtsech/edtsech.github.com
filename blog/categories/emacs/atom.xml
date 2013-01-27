@@ -4,7 +4,7 @@
   <title><![CDATA[Category: emacs | (edtsech :notes)]]></title>
   <link href="http://edtsech.github.com/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2013-01-20T15:33:48+01:00</updated>
+  <updated>2013-01-27T21:24:49+01:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
@@ -18,7 +18,7 @@
     <link href="http://edtsech.github.com/2012/12/vim-to-emacs.html"/>
     <updated>2012-12-30T00:00:00+01:00</updated>
     <id>http://edtsech.github.com/2012/12/vim-to-emacs</id>
-    <content type="html"><![CDATA[<p>As you probably know I'm active Vim user, I use Vim daily for
+    <content type="html"><![CDATA[<p>As you probably know I'm active Vim user, I've been using Vim daily for
 about 3 years. I've started with a vimconfig of my friend
 <a href="https://github.com/kossnocorp">@kossnocorp</a>
 then I tried Vim distribution called "Janus",
@@ -39,6 +39,7 @@ but it's not really smth serious, one of the reasons is VimL, I think :)</p>
 <li>EmacsLisp instead of VimL</li>
 <li>Built-in package manager from version 24</li>
 <li>Good support for Lisps including Clojure</li>
+<li>And for other funcitonal languages</li>
 <li>And of course just for fun</li>
 </ul>
 
@@ -57,7 +58,7 @@ but it's not really smth serious, one of the reasons is VimL, I think :)</p>
 <p>Support for langauges it's not really a problem in editors like Emacs, I think,
 that is why I'm not counting it here.</p>
 
-<p>I stared with my own empty <a href="https://github.com/edtsech/.emacs.d">.emacs.d</a>
+<p>I started with my own empty <a href="https://github.com/edtsech/.emacs.d">.emacs.d</a>
 First thing I added was <a href="http://emacswiki.org/emacs/Evil">evil-mode</a>, because
 my fingers can't live w/o vi-motions. Evil-mode works really perfect without any problems
 and helped me to reduce amount of Ctrl clicks.</p>
@@ -65,14 +66,14 @@ and helped me to reduce amount of Ctrl clicks.</p>
 <p>Next step is relative numbers and I was surprised to find mode for that <a href="https://github.com/coldnew/linum-relative">linum-relative</a>
 which is good and customizable.</p>
 
-<p>For auto completion I've stared with <a href="http://emacswiki.org/emacs/AutoComplete">auto-complete</a> which works great,
-but popup window doesn't look beautiful.
+<p>For auto completion I've started with <a href="http://emacswiki.org/emacs/AutoComplete">auto-complete</a> which works great,
+but popup window doesn't look beautiful. Also "smart-tab" mode is available.
 <img src="http://dl.dropbox.com/u/2428018/Screenshots/07.png" alt="emacs popup" /></p>
 
 <p><em>Buffer List</em> is kind of built-in buffer explorer in Emacs you can open it with <code>C-x b</code>
 <img src="http://dl.dropbox.com/u/2428018/Screenshots/09.png" alt="buffer list" /></p>
 
-<p>And for Ack I've just installed ack plugin via elpa.
+<p>And for Ack I've just installed ack plugin.
 <img src="http://dl.dropbox.com/u/2428018/Screenshots/0a.png" alt="list-packages" /></p>
 
 <p>Basically you have mode/packages for everything:</p>
