@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: macros | (edtsech :notes)]]></title>
+  <title><![CDATA[Category: macros | Edward Tsech]]></title>
   <link href="http://edtsech.github.com/blog/categories/macros/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2013-01-27T21:24:49+01:00</updated>
+  <updated>2013-05-24T21:07:39+02:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
-    
+    <email><![CDATA[edtsech@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
@@ -86,9 +86,6 @@ implement <code>else</code> clause, probably find a better name, implementation.
 <p>I'm not really sure about <code>else</code> clause, it can be very useful, but it sounds weird to have <code>else</code> part
 with <code>and-let</code> name. I thought about <code>if-let*</code> and <code>when-let*</code> names, it looks idiomatic for other Lisps
 but not for Clojure I think.</p>
-
-<p>I think Clojure way, will be - change a behavior of <code>if-let</code> and <code>when-let</code> macros in Clojure to support
-more than two binding forms, because <code>let</code> already does it.</p>
 
 <p>Wdyt?</p>
 

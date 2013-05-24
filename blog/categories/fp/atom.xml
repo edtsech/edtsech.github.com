@@ -1,58 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: fp | (edtsech :notes)]]></title>
+  <title><![CDATA[Category: fp | Edward Tsech]]></title>
   <link href="http://edtsech.github.com/blog/categories/fp/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2013-01-27T21:24:49+01:00</updated>
+  <updated>2013-05-24T21:07:39+02:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
-    
+    <email><![CDATA[edtsech@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Functional Injection]]></title>
-    <link href="http://edtsech.github.com/2012/11/fp.html"/>
-    <updated>2012-11-07T00:00:00+01:00</updated>
-    <id>http://edtsech.github.com/2012/11/fp</id>
-    <content type="html"><![CDATA[<h3>Groovy - 2003</h3>
-
-<p>Object-oriented with first-class functions support.</p>
-
-<h3>Scala - 2003</h3>
-
-<p>"True" object-oriented and functional.</p>
-
-<h3>Fantom - 2005</h3>
-
-<p>Object-oriented with first-class functions, actors model and immutable data structures.</p>
-
-<h3>F# - 2005</h3>
-
-<p>Influenced by OCaml, multi-paradigm language, both functional and object-oriented.</p>
-
-<h3>Clojure - 2007</h3>
-
-<p>Only functional programming paradigm is supported.</p>
-
-<h3>Go - 2009</h3>
-
-<p>???</p>
-
-<h3>Rust - 2010</h3>
-
-<p>Rust is supporting pure-functional, concurrent-actor, imperative-procedural, and object-oriented styles.</p>
-
-<h3>Lambdas in Java - 2013</h3>
-
-<p>My point is that more and more languages support functional paradigm.</p>
-
-<h2>Peace!</h2>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Language For Fast Dive Into FP]]></title>

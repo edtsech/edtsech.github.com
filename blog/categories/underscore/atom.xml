@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: underscore | (edtsech :notes)]]></title>
+  <title><![CDATA[Category: underscore | Edward Tsech]]></title>
   <link href="http://edtsech.github.com/blog/categories/underscore/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2013-01-27T21:24:49+01:00</updated>
+  <updated>2013-05-24T21:07:39+02:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
-    
+    <email><![CDATA[edtsech@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: clojure | (edtsech :notes)]]></title>
+  <title><![CDATA[Category: clojure | Edward Tsech]]></title>
   <link href="http://edtsech.github.com/blog/categories/clojure/atom.xml" rel="self"/>
   <link href="http://edtsech.github.com/"/>
-  <updated>2013-01-27T21:24:49+01:00</updated>
+  <updated>2013-05-24T21:07:39+02:00</updated>
   <id>http://edtsech.github.com/</id>
   <author>
     <name><![CDATA[Edward Tsech]]></name>
-    
+    <email><![CDATA[edtsech@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
@@ -86,9 +86,6 @@ implement <code>else</code> clause, probably find a better name, implementation.
 <p>I'm not really sure about <code>else</code> clause, it can be very useful, but it sounds weird to have <code>else</code> part
 with <code>and-let</code> name. I thought about <code>if-let*</code> and <code>when-let*</code> names, it looks idiomatic for other Lisps
 but not for Clojure I think.</p>
-
-<p>I think Clojure way, will be - change a behavior of <code>if-let</code> and <code>when-let</code> macros in Clojure to support
-more than two binding forms, because <code>let</code> already does it.</p>
 
 <p>Wdyt?</p>
 
@@ -365,136 +362,6 @@ Also there is fifth hidden option is use templating on the front-end :)
 
 ## Peace!
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rubyists, Clojure Is Your Friend]]></title>
-    <link href="http://edtsech.github.com/2012/07/clojure-is-your-friend.html"/>
-    <updated>2012-07-08T00:00:00+02:00</updated>
-    <id>http://edtsech.github.com/2012/07/clojure-is-your-friend</id>
-    <content type="html"><![CDATA[<p>Some infantile, spontaneous and subjective info about Clojure for Rubyists.</p>
-
-<ul>
-<li>Clojure is your friend</li>
-<li>Clojure is dynamically typed, as Ruby</li>
-<li>Clojure is like Ruby :) But everything isn't an object it's a function: <a href="http://clojure.org/data_structures">Clojure data structures</a></li>
-</ul>
-
-
-<p>``` clj
-; Usual function call (if you forgot how lispy syntax looks like):
-(+ 1 2) ; => 3</p>
-
-<p>; Clojure's Keyword is like Ruby's Symbol and it's a function:
-(:text {:text "Hello"}) ; => "Hello"</p>
-
-<p>; Clojure's Maps is like Ruby's Hashes and it's functions too:
-({:text "Hello"} :text) ; => "Hello"
-```</p>
-
-<ul>
-<li>Falsy values in Clojure like in Ruby: nil and false <a href="http://blog.jayfields.com/2011/02/clojure-truthy-and-falsey.html">Clojure: Truthy and Falsey</a></li>
-</ul>
-
-
-<p><code>clj
-(boolean nil)   ; =&gt; false
-(boolean false) ; =&gt; false
-(boolean 0)     ; =&gt; true
-(boolean [])    ; =&gt; true
-(boolean '())   ; =&gt; true
-</code></p>
-
-<ul>
-<li>I know, all Rubyists like metaprogramming and awesome DSLs <a href="https://github.com/weavejester/compojure/wiki/Getting-Started">Compojure</a></li>
-</ul>
-
-
-<p><code>clj
-; Sinatra like DSL
-(defroutes main-routes
-  (GET "/" [] "Hello World Wide Web!")
-  (route/resources "/")
-  (route/not-found "Page not found"))
-</code></p>
-
-<p><a href="http://sqlkorma.com/">Korma</a></p>
-
-<p>``` clj
-; SQL DSL
-(defdb prod (postgres {:db "korma"</p>
-
-<pre><code>                   :user "db"
-                   :password "dbpass"}))
-</code></pre>
-
-<p>(defentity address)
-(defentity user
-  (has-one address))</p>
-
-<p>(select user
-  (with address)
-  (fields :firstName :lastName :address.state)
-  (where {:email "korma@sqlkorma.com"}))
-```</p>
-
-<p>Or you can write your own language "conditional expression" (thanks to Lisp's homoiconicity, parentheses and macros):</p>
-
-<p>``` clj
-(defmacro unless [expr form]
-  (list 'if expr nil form))</p>
-
-<p>(def good-cop true)</p>
-
-<p>(unless good-cop (println "I say everything"))
-; nil
-(unless (not good-cop) (println "I say everything!"))
-; I say everything!
-```</p>
-
-<p>Use dashes for naming things, I know you like underscores, but dashes aren't bad too</p>
-
-<p>``` clj
-(def good-cop)
-; instead of
-(def good_cop)</p>
-
-<p>; You can use "?" and "!", actually it came to Ruby from Lisp
-(keyword? :key) ; => true</p>
-
-<p>; But sometimes you can do smth crazy, when noboby's watching:
-(def X__X "I'm die")
-```</p>
-
-<ul>
-<li>Clojure has good ecosystem</li>
-<li>Clojure is concurrency</li>
-<li>Clojure is immutability</li>
-<li>Clojure is simple syntax</li>
-<li>Clojure is simple, but not easy (" <a href="http://www.infoq.com/presentations/Simple-Made-Easy">Simple Made Easy</a> ")</li>
-<li>Clojure is data, not objects</li>
-<li>Clojure is composable libraries, not full-stack frameworks, not looking for Rails here, but there is some <a href="https://github.com/macourtney/Conjure">Conjure</a></li>
-<li>Ruby and Clojure are influenced by Lisp, of course Clojure is more influenced, you get all power of homoiconicity and more addicted to FP language</li>
-<li>Even if you don't love parentheses, parentheses love you!</li>
-<li>Clojure is your friend, isn't it?</li>
-</ul>
-
-
-<h2>Links</h2>
-
-<ul>
-<li><a href="http://tryclj.com/">Try Clojure</a></li>
-<li><a href="http://himera.herokuapp.com/index.html">Try ClojureScript</a></li>
-<li><a href="http://www.slideshare.net/yukihiro_matz/how-emacs-changed-my-life">How Emacs changed my Life - matz</a></li>
-<li><a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/179642">Ruby's lisp features</a></li>
-<li><a href="http://www.slideshare.net/antoniogarrote/lisp-vs-ruby-metaprogramming-3222908">Lisp (vs Ruby) Metaprogramming</a></li>
-<li><a href="http://www.infoq.com/interviews/yukihiro-matz-language-design/">Ruby Creator Yukihiro 'matz' about Ruby, Functional Programming and Programming Languages Design</a></li>
-<li><a href="http://briancarper.net/blog/536/clojure-from-a-ruby-perspective">Clojure, from a Ruby perspective</a></li>
-</ul>
-
-
-<h2>Peace!</h2>
 ]]></content>
   </entry>
   
