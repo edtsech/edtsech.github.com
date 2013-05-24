@@ -3,11 +3,12 @@
 # ----------------------- #
 
 url: http://edtsech.github.com
-title: (edtsech :notes)
-# subtitle: A blogging framework for hackers.
+title: Edward Tsech
+subtitle: Clojure Developer
+#subtitle: A blogging framework for hackers.
 author: Edward Tsech
 simple_search: http://google.com/search
-description:
+#description: Clojure developer
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -19,7 +20,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: "edtsech@gmail.com"
 
 # ----------------------- #
 #    Jekyll & Plugins     #
