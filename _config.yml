@@ -3,12 +3,10 @@
 # ----------------------- #
 
 url: http://edtsech.github.com
-title: Edward Tsech
-subtitle: Clojure Developer
-#subtitle: A blogging framework for hackers.
-author: Edward Tsech
+title: Ed Tsech
+subtitle: Software Developer
+author: Ed Tsech
 simple_search: http://google.com/search
-#description: Clojure developer
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
