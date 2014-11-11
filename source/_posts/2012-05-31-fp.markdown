@@ -1,0 +1,27 @@
+---
+layout: post
+title: Language For Fast Dive Into FP
+date: 2012-05-31
+comments: true
+categories: crazythoughts fp
+---
+
+Python was invented as a language for a education, at least partially.
+And now this language is quite popular and used by many companies and people.
+And also Python influenced on many languages like for example Ruby or Groovy.
+
+But in functional world we still don't have own Python, a simple language with the dynamic typization and
+less noisy syntax. You say Scheme, SICP cources and etc. But for some people LISP's syntax isn't a synonym for
+less noisy.
+
+I think, we need a simple functional language with the dynamic typization, a compact syntax without noise.
+
+## Choose first functional language
+* [http://programmers.stackexchange.com/questions/114885/which-functional-language-is-good-for-a-beginner](http://programmers.stackexchange.com/questions/114885/which-functional-language-is-good-for-a-beginner)
+* [http://stackoverflow.com/questions/2179263/which-functional-programming-language-should-i-choose-as-first-functional-progra](http://stackoverflow.com/questions/2179263/which-functional-programming-language-should-i-choose-as-first-functional-progra)
+* [http://programmers.stackexchange.com/questions/24542/choosing-a-functional-programming-language](http://programmers.stackexchange.com/questions/24542/choosing-a-functional-programming-language)
+
+## Lisp Without Parentheses
+* [http://pschombe.wordpress.com/2006/04/16/lisp-without-parentheses/](http://pschombe.wordpress.com/2006/04/16/lisp-without-parentheses/)
+
+## Peace!
